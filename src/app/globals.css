@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-primary: #1f2522;
+  --color-primary-light: #47504b;
+  --color-cta: #a7462f;
+  --color-cta-hover: #873722;
+  --color-accent: #7d5c42;
+  --color-accent-hover: #61442f;
+  --color-warm: #d9c5a9;
+  --color-warm-light: #eee4d5;
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #F5F5F5;
+  --color-white: #FFFFFF;
+  --color-dark: #18201c;
+  --color-muted: #6d716c;
+  --color-border: #e5e5e5;
+  --font-heading: "Noto Serif TC", "Songti TC", Georgia, serif;
+  --font-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+}
+
+:root {
+  --paper: #FFFFFF;
+  --ink: #1f2522;
+  --brick: #a7462f;
+  --line: #e5e5e5;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; cursor: none; }
+
+a, button, input, textarea, select, [role="button"] { cursor: none; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-feature-settings: "kern" 1;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.025em;
+}
+
+button, a, input, textarea, select { -webkit-tap-highlight-color: transparent; }
+button, a { outline-offset: 4px; }
+
+::selection { background: #a7462f; color: #fffdf8; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  color: var(--brick);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before { content: ""; width: 2.25rem; height: 1px; background: currentColor; }
+
+.paper-grid {
+  background-image:
+    linear-gradient(rgba(31, 37, 34, .055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31, 37, 34, .055) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+.hairline { border-color: color-mix(in srgb, var(--line) 88%, transparent); }
+
+.editorial-card {
+  border-top: 1px solid var(--line);
+  padding-top: 1.4rem;
+  transition: transform .35s cubic-bezier(.2,.75,.25,1), border-color .25s ease;
+}
+
+.editorial-card:hover { transform: translateY(-4px); border-color: var(--brick); }
+
+/* The original pages used a large set of soft dashboard cards. Keeping their
+   structure while flattening the surface language makes the inner pages feel
+   like the same editorial brand as the new homepage. */
+.rounded-lg, .rounded-xl, .rounded-2xl { border-radius: 2px; }
+.rounded-full { border-radius: 999px; }
+.shadow-sm, .shadow-md, .shadow-lg { box-shadow: none; }
+.bg-white { background-color: #FFFFFF; }
+input, textarea, select { font: inherit; }
+input::placeholder, textarea::placeholder { color: #9b9b94; }
+input:focus, textarea:focus, select:focus { outline: none; }
+
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes revealSide {
+  from { opacity: 0; transform: translateX(var(--reveal-x, -18px)); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-on-scroll,
+.animate-from-left,
+.animate-from-right {
+  opacity: 0;
+  animation-duration: .75s;
+  animation-timing-function: cubic-bezier(.2,.75,.25,1);
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+
+.animate-on-scroll { animation-name: revealUp; }
+.animate-from-left { --reveal-x: -18px; animation-name: revealSide; }
+.animate-from-right { --reveal-x: 18px; animation-name: revealSide; }
+.animate-on-scroll.is-visible,
+.animate-from-left.is-visible,
+.animate-from-right.is-visible { animation-play-state: running; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; }
+  .animate-on-scroll, .animate-from-left, .animate-from-right { opacity: 1; transform: none; }
+}
+
+/* Tab slide animations */
+@keyframes slideFromRight {
+  from { opacity: 0; transform: translateX(60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideFromLeft {
+  from { opacity: 0; transform: translateX(-60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-slide-left {
+  animation: slideFromRight .45s cubic-bezier(.2,.75,.25,1) forwards;
+}
+
+.animate-slide-right {
+  animation: slideFromLeft .45s cubic-bezier(.2,.75,.25,1) forwards;
+}
+
+/* Custom cursor */
+.custom-cursor { transition: opacity .3s ease; }
+.custom-cursor .cursor-svg { transition: transform .25s cubic-bezier(.2,.75,.25,1); }
+.custom-cursor .cursor-circle { transition: fill .25s ease, stroke .25s ease, r .25s ease; }
+.custom-cursor.is-hovering .cursor-svg { transform: scale(2); transform-origin: center; }
+.custom-cursor.is-hovering .cursor-circle { fill: rgba(200, 75, 50, 0.5); stroke: transparent; }
