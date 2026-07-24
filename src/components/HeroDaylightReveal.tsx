@@ -84,21 +84,21 @@ export default function HeroDaylightReveal() {
       style={initialStyle}
     >
       <Image
-        src="/images/hero-residence.png"
+        src="/images/hero-tower-night.png"
         alt=""
         fill
         preload
         sizes="100vw"
-        className="object-cover object-[62%_center]"
+        className="object-cover object-center"
       />
 
       <Image
-        src="/images/hero-residence-day.png"
+        src="/images/hero-tower-day.png"
         alt=""
         fill
         loading="eager"
         sizes="100vw"
-        className="object-cover object-[62%_center] transition-opacity duration-500 ease-out"
+        className="object-cover object-center transition-opacity duration-500 ease-out"
         style={{
           opacity: "var(--hero-reveal)",
           maskImage: mask,
