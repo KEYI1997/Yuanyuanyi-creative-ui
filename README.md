@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 圓圓乙創意留名｜官方網站
 
-## Getting Started
+> 建案不只被看見　更被記住
 
-First, run the development server:
+圓圓乙創意留名，專注於建案品牌與數位行銷。從策略定位、廣告投放到影音與網站，為建案打造能被記住、也能帶來詢問的完整行銷體驗。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+🌐 **Live Site**: [renyi-creative-ui.vercel.app](https://renyi-creative-ui.vercel.app)
+
+---
+
+## 技術棧
+
+| 類別 | 技術 |
+|------|------|
+| 框架 | Next.js 16 (App Router) |
+| 語言 | TypeScript |
+| 樣式 | Tailwind CSS 4 |
+| 資料庫 | Supabase (PostgreSQL + RLS) |
+| 郵件通知 | Resend |
+| 圖示 | Lucide React |
+| 部署 | Vercel |
+
+---
+
+## 頁面結構
+
+```
+/              首頁（Hero + 服務 + 流程 + CTA）
+/about         關於我們
+/solutions     服務內容
+/contact       聯絡洽詢
+/admin         後台管理（評論、案例、聯絡表單）
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 開發
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# 安裝依賴
+npm install
 
-## Learn More
+# 啟動開發伺服器
+npm run dev
 
-To learn more about Next.js, take a look at the following resources:
+# 建置
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 環境變數
 
-## Deploy on Vercel
+建立 `.env.local`：
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```env
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+RESEND_API_KEY=
+NEXT_PUBLIC_SITE_URL=
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 部署
+
+推送至 `master` 分支即自動觸發 Vercel 部署。
+
+---
+
+## 專案特色
+
+- 🎬 Hero 日夜切換動畫（HeroDaylightReveal）
+- 🖱️ 自訂游標（CustomCursor）
+- 📱 Mobile-first 響應式設計
+- 🎭 滾動觸發動畫（AnimateOnScroll）
+- 🍪 Cookie 同意提示
+- 📞 浮動快捷按鈕（LINE / 電話 / 回頂部）
+- 🔒 後台管理系統（密碼保護）
+- ✉️ 表單提交 + Email 即時通知
