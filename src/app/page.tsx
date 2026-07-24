@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowDown, ArrowUpRight, Building2, Check, Globe, MessageCircle, Target, Video } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import HeroDaylightReveal from "@/components/HeroDaylightReveal";
 
 const services = [
   { no: "01", icon: Building2, title: "建案整體企劃", desc: "從市場研究、品牌定位到案名與銷售溝通，建立一套能說服市場的完整敘事。", href: "/solutions#planning" },
@@ -22,7 +23,7 @@ export default function Home() {
   return (
     <>
       <section className="relative flex min-h-[75vh] items-end overflow-hidden bg-dark pb-14 pt-32 text-white lg:min-h-[85vh] lg:pb-20 lg:pt-40">
-        <Image src="/images/hero-residence.png" alt="暮色中的現代住宅建築與暖色燈光" fill priority sizes="100vw" className="object-cover object-[62%_center]" />
+        <HeroDaylightReveal />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(16,22,19,.94)_0%,rgba(16,22,19,.72)_42%,rgba(16,22,19,.12)_78%)]" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/20" />
 
@@ -30,7 +31,7 @@ export default function Home() {
           <AnimateOnScroll>
             <p className="eyebrow !text-warm">Real estate creative studio</p>
             <h1 className="mt-8 max-w-5xl text-[clamp(3.25rem,8.4vw,8.5rem)] font-medium leading-[.94] tracking-[-.055em] text-white">
-              讓建案不只<br /><span className="whitespace-nowrap"><span className="italic text-warm">被看見，</span>更被記住。</span>
+              建案不只<br /><span className="whitespace-nowrap"><span className="italic text-warm">被看見</span>　更被記住</span>
             </h1>
           </AnimateOnScroll>
 
