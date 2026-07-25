@@ -30,14 +30,14 @@ export default function Home() {
         <div className="relative mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12">
           <AnimateOnScroll>
             <p className="eyebrow !text-warm">Real estate creative studio</p>
-            <h1 className="mt-8 max-w-5xl text-[clamp(3.25rem,8.4vw,8.5rem)] font-medium leading-[.94] tracking-[-.055em] text-white">
+            <h1 className="mt-8 max-w-5xl text-[clamp(2.5rem,6vw,6.5rem)] font-medium leading-[.94] tracking-[-.055em] text-white">
               建案不只被看見<br />更被記住
             </h1>
           </AnimateOnScroll>
 
           <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
             <AnimateOnScroll delay={180}>
-              <p className="max-w-xl text-base leading-8 text-white/65 sm:text-lg">圓圓乙創意留名，專注於建案品牌與數位行銷。我們從土地與人的關係出發，把策略、創意與成效放進同一張藍圖。</p>
+              <p className="max-w-xl text-base leading-8 text-white/65 sm:text-lg">專注於建案品牌與數位行銷。從土地與人的關係出發，把策略、創意與成效放進同一張藍圖。</p>
             </AnimateOnScroll>
             <AnimateOnScroll delay={280} className="lg:justify-self-end">
               <div className="flex flex-wrap gap-3">
