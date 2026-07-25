@@ -31,7 +31,7 @@ export default function Home() {
           <AnimateOnScroll>
             <p className="eyebrow !text-warm">Real estate creative studio</p>
             <h1 className="mt-8 max-w-5xl text-[clamp(3.25rem,8.4vw,8.5rem)] font-medium leading-[.94] tracking-[-.055em] text-white">
-              建案不只<br /><span className="whitespace-nowrap"><span className="italic text-warm">被看見</span>　更被記住</span>
+              建案不只被看見<br />更被記住
             </h1>
           </AnimateOnScroll>
 
