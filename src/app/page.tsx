@@ -51,12 +51,8 @@ export default function Home() {
       <section id="services" className="py-22 lg:py-32">
         <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
           <AnimateOnScroll>
-            <div className="grid gap-6 border-b border-primary pb-10 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
+            <div className="border-b border-primary pb-10">
               <p className="eyebrow">What we do</p>
-              <div>
-                <h2 className="text-4xl leading-tight sm:text-5xl lg:text-6xl">把零散的行銷項目，<br />整合成一致的品牌體驗。</h2>
-                <p className="mt-5 max-w-2xl leading-7 text-muted">不是套版服務清單，而是依照每個建案所處的市場階段，選擇真正需要的策略與工具。</p>
-              </div>
             </div>
           </AnimateOnScroll>
 
