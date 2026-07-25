@@ -36,8 +36,6 @@ export default function Home() {
           </AnimateOnScroll>
 
           <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
-            <AnimateOnScroll delay={180}>
-            </AnimateOnScroll>
             <AnimateOnScroll delay={280} className="lg:justify-self-end">
               <div className="flex flex-wrap gap-3">
                 <Link href="#contact" className="inline-flex items-center gap-3 bg-cta px-6 py-4 text-sm font-semibold text-white transition-colors hover:bg-cta-hover">預約專案諮詢 <ArrowUpRight size={17} /></Link>
