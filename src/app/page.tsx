@@ -37,7 +37,6 @@ export default function Home() {
 
           <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
             <AnimateOnScroll delay={180}>
-              <p className="max-w-xl text-base leading-8 text-white/65 sm:text-lg">把零散的行銷項目，整合成一致的品牌體驗。不是套版服務清單，而是依照每個建案所處的市場階段，選擇真正需要的策略與工具。</p>
             </AnimateOnScroll>
             <AnimateOnScroll delay={280} className="lg:justify-self-end">
               <div className="flex flex-wrap gap-3">
@@ -82,7 +81,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
           <AnimateOnScroll>
             <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-              <div><p className="eyebrow">Selected perspectives</p><h2 className="mt-6 text-4xl sm:text-5xl">先讓人想住進去，<br />再讓人想走進來。</h2></div>
+              <div><p className="eyebrow">Selected perspectives</p><h2 className="mt-6 text-4xl sm:text-5xl">讓每一次心動，<br />都變成一次賞屋。</h2></div>
               <p className="max-w-md text-sm leading-7 text-muted">以建築與生活感為主角的視覺提案。不是堆疊華麗效果，而是建立一眼就能辨認的建案氣質。</p>
             </div>
           </AnimateOnScroll>
@@ -106,7 +105,7 @@ export default function Home() {
       <section className="bg-dark py-22 text-white lg:py-32">
         <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
           <div className="grid gap-12 lg:grid-cols-[.75fr_1.25fr]">
-            <AnimateOnScroll direction="left"><p className="eyebrow !text-warm">How we work</p><h2 className="mt-7 text-4xl leading-tight sm:text-5xl lg:text-6xl">好的合作，<br />從問對問題開始。</h2><p className="mt-7 max-w-md leading-8 text-white/55">在急著提出答案以前，我們先把市場、產品與真正想溝通的人看清楚。</p></AnimateOnScroll>
+            <AnimateOnScroll direction="left"><p className="eyebrow !text-warm">How we work</p><h2 className="mt-7 text-4xl leading-tight sm:text-5xl lg:text-6xl">好的合作<br />從問對問題開始。</h2><p className="mt-7 max-w-md leading-8 text-white/55">提出答案以前，先把市場、產品與真正想溝通的人看清楚。</p></AnimateOnScroll>
             <div>
               {process.map(([no, title, desc], index) => (
                 <AnimateOnScroll key={no} delay={index * 80}>
@@ -125,7 +124,6 @@ export default function Home() {
           <AnimateOnScroll>
             <div className="grid gap-6 border-b border-primary pb-10 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
               <p className="eyebrow">What you get</p>
-              <div><h2 className="text-4xl leading-tight sm:text-5xl lg:text-6xl">每一次被看見，<br />都朝同一個方向。</h2><p className="mt-5 max-w-2xl leading-7 text-muted">我們交付的不只是單一作品，而是一套從品牌定位延伸到市場溝通、可以持續運作的建案行銷系統。</p></div>
             </div>
           </AnimateOnScroll>
 
