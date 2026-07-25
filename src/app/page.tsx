@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowDown, ArrowUpRight, Building2, Check, Globe, MessageCircle, Target, Video } from "lucide-react";
+import { ArrowUpRight, Building2, Check, Globe, MessageCircle, Target, Video } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import HeroDaylightReveal from "@/components/HeroDaylightReveal";
 
@@ -30,14 +30,14 @@ export default function Home() {
         <div className="relative mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12">
           <AnimateOnScroll>
             <p className="eyebrow !text-warm">Real estate creative studio</p>
-            <h1 className="mt-8 max-w-5xl text-[clamp(2.5rem,6vw,6.5rem)] font-medium leading-[.94] tracking-[-.055em] text-white">
+            <h1 className="my-10 max-w-5xl text-[clamp(2.5rem,6vw,6.5rem)] font-medium leading-[.94] tracking-[-.055em] text-white lg:my-14">
               建案不只被看見<br />更被記住
             </h1>
           </AnimateOnScroll>
 
           <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
             <AnimateOnScroll delay={180}>
-              <p className="max-w-xl text-base leading-8 text-white/65 sm:text-lg">專注於建案品牌與數位行銷。從土地與人的關係出發，把策略、創意與成效放進同一張藍圖。</p>
+              <p className="max-w-xl text-base leading-8 text-white/65 sm:text-lg">把零散的行銷項目，整合成一致的品牌體驗。不是套版服務清單，而是依照每個建案所處的市場階段，選擇真正需要的策略與工具。</p>
             </AnimateOnScroll>
             <AnimateOnScroll delay={280} className="lg:justify-self-end">
               <div className="flex flex-wrap gap-3">
@@ -47,9 +47,7 @@ export default function Home() {
             </AnimateOnScroll>
           </div>
 
-          <div className="mt-12 flex items-center justify-between border-t border-white/25 pt-5 text-xs text-white/50 lg:mt-16">
-            <span>TAOYUAN · TAIWAN</span><a href="#services" className="flex items-center gap-2 hover:text-warm">向下探索 <ArrowDown size={14} /></a>
-          </div>
+
         </div>
       </section>
 
