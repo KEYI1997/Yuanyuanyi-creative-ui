@@ -75,7 +75,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
           <AnimateOnScroll>
             <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-              <div><p className="eyebrow">Selected perspectives</p><h2 className="mt-6 text-4xl sm:text-5xl">讓每一次心動，<br />都變成一次賞屋。</h2></div>
+              <div><p className="eyebrow">Selected perspectives</p><h2 className="mt-6 text-4xl sm:text-5xl">讓每一次心動<br />都變成一次賞屋</h2></div>
               <p className="max-w-md text-sm leading-7 text-muted">以建築與生活感為主角的視覺提案。不是堆疊華麗效果，而是建立一眼就能辨認的建案氣質。</p>
             </div>
           </AnimateOnScroll>
