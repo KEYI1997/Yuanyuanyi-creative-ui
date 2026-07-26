@@ -99,7 +99,7 @@ export default function Home() {
       <section className="bg-dark py-22 text-white lg:py-32">
         <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
           <div className="grid gap-12 lg:grid-cols-[.75fr_1.25fr]">
-            <AnimateOnScroll direction="left"><p className="eyebrow !text-warm">How we work</p><h2 className="mt-7 text-4xl leading-tight sm:text-5xl lg:text-6xl">好的合作<br />從問對問題開始。</h2><p className="mt-7 max-w-md leading-8 text-white/55">提出答案以前，先把市場、產品與真正想溝通的人看清楚。</p></AnimateOnScroll>
+            <AnimateOnScroll direction="left"><p className="eyebrow !text-warm">How we work</p><h2 className="mt-7 text-4xl leading-tight sm:text-5xl lg:text-6xl">成功的建案<br />從深入討論開始</h2><p className="mt-7 max-w-md leading-8 text-white/55">提出答案以前，先把市場、產品與真正想溝通的人看清楚。</p></AnimateOnScroll>
             <div>
               {process.map(([no, title, desc], index) => (
                 <AnimateOnScroll key={no} delay={index * 80}>
