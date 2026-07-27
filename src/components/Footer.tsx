@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid gap-12 border-b border-white/15 pb-14 lg:grid-cols-[1.3fr_.7fr_.7fr] lg:gap-20">
           <div>
             <p className="eyebrow !text-warm">Start a project</p>
-            <h2 className="mt-7 max-w-2xl text-4xl leading-[1.2] sm:text-5xl">有一塊好土地，<br />就該有一個好故事。</h2>
+            <h2 className="mt-7 max-w-2xl text-4xl leading-[1.2] sm:text-5xl">好土地<br />就該有一個好故事</h2>
             <Link href="/contact" className="mt-9 inline-flex items-center gap-3 border-b border-warm pb-2 text-warm transition-colors hover:border-white hover:text-white">
               告訴我們你的建案 <ArrowUpRight size={18} />
             </Link>
