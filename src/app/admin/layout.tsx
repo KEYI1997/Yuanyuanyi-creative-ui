@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowLeft, FileText, LayoutDashboard, LockKeyhole } from "lucide-react";
+import { ArrowLeft, BarChart3, FileText, LayoutDashboard, LockKeyhole } from "lucide-react";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -40,6 +40,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const links = [
     { href: "/admin", label: "總覽", icon: LayoutDashboard },
     { href: "/admin/contacts", label: "聯絡表單", icon: FileText },
+    { href: "/admin/analytics", label: "網站數據", icon: BarChart3 },
   ];
 
   return (
