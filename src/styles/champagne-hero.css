@@ -24,29 +24,92 @@
 .champagne-energy {
   --champagne-wave-x: 0px;
   position: absolute;
-  inset: 12vh -5vw 0;
+  inset: 0 -5vw 0;
   transform: translate3d(var(--champagne-wave-x), 0, 0);
   pointer-events: none;
+  opacity: .96;
 }
 
 .champagne-column {
   position: absolute;
   bottom: 0;
   display: block;
-  transform: translateX(-50%) scaleY(.7);
+  overflow: hidden;
+  transform: translateX(-50%);
   transform-origin: bottom center;
-  border-radius: 999px 999px 0 0;
-  mix-blend-mode: multiply;
+  border-inline: 1px solid rgba(217, 183, 126, .08);
+  mix-blend-mode: normal;
+  opacity: var(--column-panel-opacity);
   will-change: transform, opacity;
+  mask-image: linear-gradient(to top, rgba(0,0,0,.82), rgba(0,0,0,.95) 22%, rgba(0,0,0,.72) 64%, transparent 100%);
+}
+
+.champagne-column::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent, rgba(217, 183, 126, .08), transparent),
+    linear-gradient(to top, rgba(217, 183, 126, .08), transparent 62%);
+  opacity: .46;
 }
 
 .champagne-column::after {
   content: "";
   position: absolute;
-  inset: auto 8% 0;
-  height: 34%;
-  border-radius: 999px 999px 0 0;
-  background: radial-gradient(ellipse at bottom, rgba(217, 183, 126, .34), transparent 72%);
+  inset: auto 0 0;
+  height: 42%;
+  background: linear-gradient(to top, rgba(217, 183, 126, .24), rgba(243, 230, 207, .16), transparent);
+}
+
+.champagne-column-band,
+.champagne-column-glow {
+  position: absolute;
+  left: -18%;
+  right: -18%;
+  top: var(--column-band-y);
+  height: var(--column-band-height);
+  transform: translate3d(0, -50%, 0);
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+.champagne-column-band {
+  background:
+    radial-gradient(ellipse at 50% 48%, rgba(255,255,255,.86), transparent 20%),
+    radial-gradient(ellipse at 50% 50%, var(--column-cream), transparent 46%),
+    linear-gradient(to bottom, transparent, var(--column-champagne) 36%, rgba(243, 230, 207, .70) 54%, transparent);
+  filter: blur(var(--column-blur));
+}
+
+.champagne-column-glow {
+  height: calc(var(--column-band-height) * 1.65);
+  background: radial-gradient(ellipse at center, rgba(217, 183, 126, .38), transparent 62%);
+  filter: blur(18px);
+  opacity: .22;
+}
+
+.champagne-wave-ribbon {
+  position: absolute;
+  left: -8vw;
+  right: -8vw;
+  top: 30vh;
+  height: 34vh;
+  pointer-events: none;
+  opacity: .76;
+  background:
+    radial-gradient(ellipse at 5% 48%, rgba(217, 183, 126, .58), transparent 18%),
+    radial-gradient(ellipse at 22% 59%, rgba(243, 230, 207, .94), transparent 19%),
+    radial-gradient(ellipse at 40% 58%, rgba(217, 183, 126, .62), transparent 18%),
+    radial-gradient(ellipse at 58% 52%, rgba(243, 230, 207, .90), transparent 19%),
+    radial-gradient(ellipse at 75% 43%, rgba(217, 183, 126, .60), transparent 18%),
+    radial-gradient(ellipse at 94% 34%, rgba(243, 230, 207, .86), transparent 19%);
+  filter: blur(14px);
+  mask-image:
+    radial-gradient(ellipse at center, rgba(0,0,0,.18), rgba(0,0,0,.7) 46%, rgba(0,0,0,.9) 100%),
+    linear-gradient(to bottom, transparent, rgba(0,0,0,.92) 18%, rgba(0,0,0,.86) 74%, transparent);
+  mask-composite: intersect;
+  will-change: transform, opacity;
 }
 
 .champagne-fog {
@@ -55,9 +118,10 @@
   height: 42vh;
   pointer-events: none;
   background:
-    radial-gradient(ellipse at 18% 68%, rgba(217, 183, 126, .30), transparent 58%),
-    radial-gradient(ellipse at 54% 72%, rgba(243, 230, 207, .54), transparent 62%),
-    radial-gradient(ellipse at 84% 70%, rgba(232, 210, 170, .26), transparent 58%);
+    radial-gradient(ellipse at 18% 68%, rgba(217, 183, 126, .36), transparent 58%),
+    radial-gradient(ellipse at 54% 72%, rgba(243, 230, 207, .64), transparent 62%),
+    radial-gradient(ellipse at 84% 70%, rgba(232, 210, 170, .34), transparent 58%),
+    linear-gradient(to top, rgba(217, 183, 126, .22), transparent 56%);
   filter: blur(26px);
   opacity: .58;
   will-change: transform, opacity;
@@ -182,11 +246,15 @@
   }
 
   .champagne-energy {
-    inset: 18vh -10vw 0;
+    inset: 15vh -10vw 0;
   }
 
-  .champagne-column {
-    filter: blur(8px) !important;
+  .champagne-column-band {
+    filter: blur(8px);
+  }
+
+  .champagne-column-glow {
+    filter: blur(12px);
   }
 
   .champagne-hud-label {
@@ -202,6 +270,13 @@
     filter: blur(18px);
   }
 
+  .champagne-wave-ribbon {
+    top: 29vh;
+    height: 28vh;
+    filter: blur(14px);
+    opacity: .42;
+  }
+
   .champagne-cta {
     width: min(100%, 320px);
   }
@@ -209,6 +284,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .champagne-energy,
+  .champagne-wave-ribbon,
   .champagne-fog,
   .champagne-hud {
     transform: none !important;
@@ -216,6 +292,6 @@
 
   .champagne-column {
     opacity: .28;
-    transform: translateX(-50%) scaleY(.82);
+    transform: translateX(-50%);
   }
 }

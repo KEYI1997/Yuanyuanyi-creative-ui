@@ -57,6 +57,16 @@ export default function ChampagneHero() {
           repeat: -1,
           yoyo: true,
         });
+
+        gsap.to(".champagne-wave-ribbon", {
+          x: 34,
+          y: -16,
+          opacity: 0.62,
+          duration: 8.8,
+          ease: "sine.inOut",
+          repeat: -1,
+          yoyo: true,
+        });
       }
     }, root);
 
@@ -126,6 +136,7 @@ export default function ChampagneHero() {
       <div data-hero-parallax="0.35">
         <HudDecor />
       </div>
+      <div className="champagne-wave-ribbon" data-hero-parallax="0.12" aria-hidden="true" />
       <div data-hero-parallax="0.18">
         <EnergyColumns />
       </div>
