@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, Building2, Check, Globe, MessageCircle, Target, Video } from "lucide-react";
+import { ArrowUpRight, Building2, Globe, MessageCircle, Target, Video } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
-import HeroDaylightReveal from "@/components/HeroDaylightReveal";
+import ChampagneHero from "@/components/ChampagneHero";
+import "@/styles/champagne-hero.css";
 
 const services = [
   { no: "01", icon: Building2, title: "建案整體企劃", desc: "從市場研究、品牌定位到案名與銷售溝通，建立一套能說服市場的完整敘事。", href: "/solutions#planning" },
@@ -22,31 +23,7 @@ const process = [
 export default function Home() {
   return (
     <>
-      <section className="relative flex min-h-[75vh] items-end overflow-hidden bg-dark pb-14 pt-32 text-white lg:min-h-[85vh] lg:pb-20 lg:pt-40">
-        <HeroDaylightReveal />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(16,22,19,.94)_0%,rgba(16,22,19,.72)_42%,rgba(16,22,19,.12)_78%)]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/20" />
-
-        <div className="relative mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12">
-          <AnimateOnScroll>
-            <p className="eyebrow !text-warm">Real estate creative studio</p>
-            <h1 className="my-10 max-w-5xl text-[clamp(2.5rem,6vw,6.5rem)] font-medium leading-[.94] tracking-[-.055em] text-white lg:my-14">
-              建案不只被看見<br />更被記住
-            </h1>
-          </AnimateOnScroll>
-
-          <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
-            <AnimateOnScroll delay={280} className="lg:justify-self-end">
-              <div className="flex flex-wrap gap-3">
-                <Link href="#contact" className="inline-flex items-center gap-3 bg-cta px-6 py-4 text-sm font-semibold text-white transition-colors hover:bg-cta-hover">預約專案諮詢 <ArrowUpRight size={17} /></Link>
-                <Link href="/solutions" className="inline-flex items-center gap-3 border border-white/55 px-6 py-4 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-dark">查看服務內容</Link>
-              </div>
-            </AnimateOnScroll>
-          </div>
-
-
-        </div>
-      </section>
+      <ChampagneHero />
 
       <section id="services" className="py-22 lg:py-32">
         <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">

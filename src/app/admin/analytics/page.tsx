@@ -44,7 +44,11 @@ export default function AnalyticsPage() {
   }, []);
 
   useEffect(() => {
-    fetchData();
+    const timer = window.setTimeout(() => {
+      void fetchData();
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, [fetchData]);
 
   // === 計算統計數據 ===
@@ -59,7 +63,6 @@ export default function AnalyticsPage() {
   const googleCount = getSourceCount("google");
   const facebookCount = getSourceCount("facebook");
   const lineCount = getSourceCount("line");
-  const instagramCount = getSourceCount("instagram");
 
   // 最近 5 分鐘內的活躍訪客
   const now = new Date();

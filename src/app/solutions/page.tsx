@@ -21,7 +21,6 @@ import {
   Bot,
   Send,
   UserPlus,
-  CheckCircle2,
   Phone,
 } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
@@ -89,11 +88,9 @@ const tabContents = [
 
 export default function SolutionsPage() {
   const [activeTab, setActiveTab] = useState(0);
-  const [slideDir, setSlideDir] = useState<"left" | "right">("left");
 
   const goTo = (index: number) => {
     if (index === activeTab) return;
-    setSlideDir(index > activeTab ? "left" : "right");
     setActiveTab(index);
   };
 

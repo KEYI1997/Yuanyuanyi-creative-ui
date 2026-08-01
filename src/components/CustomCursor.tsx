@@ -21,8 +21,6 @@ export default function CustomCursor() {
     let cursorX = 0;
     let cursorY = 0;
 
-    const circle = cursor.querySelector("circle") as SVGCircleElement | null;
-
     const handleMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
