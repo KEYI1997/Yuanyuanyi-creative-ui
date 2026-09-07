@@ -79,9 +79,8 @@ void main() {
   if (distanceFromCenter > 0.5) discard;
   float core = smoothstep(0.22, 0.02, distanceFromCenter);
   float glow = smoothstep(0.5, 0.12, distanceFromCenter);
-  vec3 coffee = vec3(0.27, 0.14, 0.075);
-  vec3 caramel = vec3(0.68, 0.43, 0.23);
-  vec3 base = vTone < 0.64 ? coffee : caramel;
+  vec3 coffee = vec3(0.31, 0.17, 0.095);
+  vec3 base = coffee;
   vec3 color = mix(base, base * 1.16, core * 0.22);
   float alpha = (glow * 0.56 + core * 0.96) * vAlpha;
   outColor = vec4(color, alpha);
