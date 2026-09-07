@@ -3,7 +3,7 @@
 import Link from "next/link";
 import NextImage from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowDownRight, Pause, Play, Sparkles, Waves } from "lucide-react";
+import { ArrowDownRight } from "lucide-react";
 
 const CYCLE_SECONDS = 36;
 
@@ -79,20 +79,16 @@ void main() {
   if (distanceFromCenter > 0.5) discard;
   float core = smoothstep(0.22, 0.02, distanceFromCenter);
   float glow = smoothstep(0.5, 0.12, distanceFromCenter);
-  vec3 navy = vec3(0.122, 0.165, 0.267);
-  vec3 gold = vec3(0.776, 0.655, 0.369);
-  vec3 warm = vec3(0.910, 0.863, 0.784);
-  vec3 base = vTone < 0.68 ? navy : (vTone < 0.91 ? gold : warm);
-  vec3 color = mix(base, vec3(1.0), core * (vTone > 0.88 ? 0.62 : 0.24));
-  float alpha = (glow * 0.44 + core * 0.78) * vAlpha;
+  vec3 navy = vec3(0.075, 0.105, 0.19);
+  vec3 gold = vec3(0.69, 0.54, 0.22);
+  vec3 base = vTone < 0.64 ? navy : gold;
+  vec3 color = mix(base, base * 1.16, core * 0.22);
+  float alpha = (glow * 0.56 + core * 0.96) * vAlpha;
   outColor = vec4(color, alpha);
 }`;
 
 type ParticleControls = {
   morph: number;
-  targetMorph: number;
-  manual: boolean;
-  paused: boolean;
   shockAt: number;
   shockCenter: [number, number];
 };
@@ -117,9 +113,7 @@ function autoMorph(time: number) {
 
 export default function ChampagneHero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const controlsRef = useRef<ParticleControls>({ morph: 0, targetMorph: 0, manual: false, paused: false, shockAt: -100, shockCenter: [0, 0] });
-  const [paused, setPaused] = useState(false);
-  const [morphLabel, setMorphLabel] = useState("切換星雲");
+  const controlsRef = useRef<ParticleControls>({ morph: 0, shockAt: -100, shockCenter: [0, 0] });
   const [failed, setFailed] = useState(false);
 
   const triggerShock = useCallback((x = 0, y = 0) => {
@@ -139,8 +133,6 @@ export default function ChampagneHero() {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const pointer = { x: 0, y: 0, active: 0 };
     const startedAt = performance.now() / 1000;
-    let frozenTime = 0;
-    let pauseStarted = 0;
 
     try {
       const program = gl.createProgram();
@@ -183,8 +175,8 @@ export default function ChampagneHero() {
           const source = candidates[(Math.random() * candidates.length) | 0];
           const jitterX = (Math.random() - 0.5) * 1.8;
           const jitterY = (Math.random() - 0.5) * 1.8;
-          logo[i * 2] = ((source[0] + jitterX) / sampleSize - 0.5) * 1.5;
-          logo[i * 2 + 1] = (0.5 - (source[1] + jitterY) / sampleSize) * 1.5;
+          logo[i * 2] = ((source[0] + jitterX) / sampleSize - 0.5) * 1.85;
+          logo[i * 2 + 1] = (0.5 - (source[1] + jitterY) / sampleSize) * 1.85;
           const s = Math.random();
           const arm = i % 4;
           const theta = Math.random() * Math.PI * 2 + arm * 1.38;
@@ -249,16 +241,9 @@ export default function ChampagneHero() {
           if (disposed) return;
           const now = milliseconds / 1000;
           const state = controlsRef.current;
-          if (state.paused && !pauseStarted) pauseStarted = now;
-          if (!state.paused && pauseStarted) {
-            const pauseDuration = now - pauseStarted;
-            frozenTime += pauseDuration;
-            state.shockAt += pauseDuration;
-            pauseStarted = 0;
-          }
-          const elapsed = state.paused ? pauseStarted - startedAt - frozenTime : now - startedAt - frozenTime;
-          const target = state.manual ? state.targetMorph : (reducedMotion ? 0 : autoMorph(elapsed));
-          state.morph += (target - state.morph) * (state.manual ? 0.055 : 0.025);
+          const elapsed = now - startedAt;
+          const target = reducedMotion ? 0 : autoMorph(elapsed);
+          state.morph += (target - state.morph) * 0.025;
           const rect = canvas.getBoundingClientRect();
           const dpr = canvas.width / Math.max(rect.width, 1);
           gl.clearColor(0, 0, 0, 0);
@@ -281,18 +266,6 @@ export default function ChampagneHero() {
     return () => { disposed = true; cancelAnimationFrame(frame); };
   }, [triggerShock]);
 
-  const toggleMorph = () => {
-    const state = controlsRef.current;
-    state.manual = true;
-    state.targetMorph = state.morph > 0.48 ? 0 : 1;
-    setMorphLabel(state.targetMorph > 0.5 ? "凝聚標誌" : "切換星雲");
-  };
-  const togglePause = () => {
-    const next = !controlsRef.current.paused;
-    controlsRef.current.paused = next;
-    setPaused(next);
-  };
-
   return (
     <section className="brand-hero" aria-labelledby="hero-title">
       <div className="brand-hero__grain" aria-hidden="true" />
@@ -308,14 +281,8 @@ export default function ChampagneHero() {
           <p className="brand-hero__note">桃園 · 建築品牌與銷售溝通</p>
         </div>
         <div className="brand-hero__field">
-          <div className="brand-hero__orbit" aria-hidden="true" />
           <canvas ref={canvasRef} className="brand-hero__canvas" aria-label="由圓圓乙品牌標誌聚合變形的互動粒子動畫" />
           {failed && <div className="brand-hero__fallback" role="status"><NextImage src="/brand-logo.svg" alt="圓圓乙品牌標誌" width={390} height={390} /><p>你的瀏覽器目前無法顯示互動粒子。</p></div>}
-          <div className="brand-hero__controls" aria-label="粒子動畫控制">
-            <button type="button" onClick={toggleMorph}><Waves size={16} /> {morphLabel}</button>
-            <button type="button" onClick={() => triggerShock(0, 0)}><Sparkles size={16} /> 激起共振</button>
-            <button type="button" onClick={togglePause} aria-pressed={paused}>{paused ? <Play size={16} /> : <Pause size={16} />} {paused ? "播放" : "暫停"}</button>
-          </div>
           <div className="brand-hero__coordinate" aria-hidden="true">FIELD 24.9912°N<br />121.3092°E</div>
         </div>
       </div>
