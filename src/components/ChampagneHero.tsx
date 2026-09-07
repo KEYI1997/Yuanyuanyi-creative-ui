@@ -8,11 +8,9 @@ import { ArrowDownRight } from "lucide-react";
 const vertexShader = `#version 300 es
 precision highp float;
 in vec2 aLogo;
-in vec2 aNebula;
 in float aSeed;
 in float aSize;
 uniform float uTime;
-uniform float uMorph;
 uniform float uAspect;
 uniform float uPixelRatio;
 uniform vec2 uMouse;
@@ -22,22 +20,19 @@ uniform float uShockAge;
 out float vAlpha;
 out float vSeed;
 
-float ease(float t) { return t * t * (3.0 - 2.0 * t); }
-
 void main() {
-  float morph = ease(clamp(uMorph, 0.0, 1.0));
-  vec2 p = mix(aLogo, aNebula, morph);
+  vec2 p = aLogo;
   float phase = aSeed * 6.2831853;
   p += vec2(
     sin(uTime * (0.2 + aSeed * 0.15) + phase + p.y * 4.0),
     cos(uTime * (0.17 + aSeed * 0.13) + phase + p.x * 4.0)
-  ) * (0.004 + morph * 0.014);
+  ) * 0.004;
   float radius = length(p);
-  float spin = (0.014 + 0.03 * aSeed) * uTime * (aSeed > 0.48 ? 1.0 : -0.72) * morph;
+  float spin = (0.004 + 0.008 * aSeed) * sin(uTime * 0.35 + phase);
   float cs = cos(spin);
   float sn = sin(spin);
   p = mat2(cs, -sn, sn, cs) * p;
-  p *= 1.0 + sin(uTime * 0.46 + phase + radius * 7.0) * (0.004 + morph * 0.01);
+  p *= 1.0 + sin(uTime * 0.46 + phase + radius * 7.0) * 0.004;
 
   vec2 mouseDelta = p - uMouse;
   float mouseDistance = length(mouseDelta);
@@ -87,17 +82,6 @@ function createShader(gl: WebGL2RenderingContext, type: number, source: string) 
   gl.compileShader(shader);
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(shader) || "shader compile failed");
   return shader;
-}
-
-const CYCLE_SECONDS = 36;
-
-function autoMorph(time: number) {
-  const phase = time % CYCLE_SECONDS;
-  if (phase < 7) return 0;
-  if (phase < 15) return (phase - 7) / 8;
-  if (phase < 22) return 1;
-  if (phase < 31) return 1 - (phase - 22) / 9;
-  return 0;
 }
 
 export default function ChampagneHero() {
@@ -151,7 +135,6 @@ export default function ChampagneHero() {
         if (candidates.length < 10) throw new Error("logo has no visible pixels");
         const bounds = candidates.reduce((result, [x, y]) => ({ minX: Math.min(result.minX, x), maxX: Math.max(result.maxX, x), minY: Math.min(result.minY, y), maxY: Math.max(result.maxY, y) }), { minX: 420, maxX: 0, minY: 420, maxY: 0 });
         const positions = new Float32Array(count * 2);
-        const nebula = new Float32Array(count * 2);
         const seed = new Float32Array(count);
         const size = new Float32Array(count);
         const logoSpanX = screenWidth < 720 ? 0.82 : screenWidth < 1200 ? 0.9 : 0.98;
@@ -163,12 +146,6 @@ export default function ChampagneHero() {
           positions[i * 2] = ((((source[0] + jitterX) - bounds.minX) / (bounds.maxX - bounds.minX)) - 0.5) * 2 * logoSpanX;
           positions[i * 2 + 1] = (0.5 - (((source[1] + jitterY) - bounds.minY) / (bounds.maxY - bounds.minY))) * 2 * logoSpanY;
           const s = Math.random();
-          const arm = i % 4;
-          const theta = Math.random() * Math.PI * 2 + arm * 1.38;
-          const radius = Math.pow(Math.random(), 0.58) * (0.62 + Math.random() * 0.22);
-          const spiral = theta + radius * (5.0 + arm * 0.56);
-          nebula[i * 2] = Math.cos(spiral) * radius * (1.05 + Math.sin(theta * 3.0) * 0.1);
-          nebula[i * 2 + 1] = Math.sin(spiral) * radius * 0.76 + Math.sin(theta * 2.0) * 0.055;
           seed[i] = s;
           size[i] = s > 0.965 ? 13 + Math.random() * 7 : s > 0.76 ? 7 + Math.random() * 4.6 : 4 + Math.random() * 3.2;
         }
@@ -182,12 +159,11 @@ export default function ChampagneHero() {
           gl.vertexAttribPointer(location, widthPerVertex, gl.FLOAT, false, 0, 0);
         };
         bind("aLogo", positions, 2);
-        bind("aNebula", nebula, 2);
         bind("aSeed", seed, 1);
         bind("aSize", size, 1);
 
         const uniforms = {
-          time: gl.getUniformLocation(program, "uTime"), morph: gl.getUniformLocation(program, "uMorph"), aspect: gl.getUniformLocation(program, "uAspect"),
+          time: gl.getUniformLocation(program, "uTime"), aspect: gl.getUniformLocation(program, "uAspect"),
           pixelRatio: gl.getUniformLocation(program, "uPixelRatio"), mouse: gl.getUniformLocation(program, "uMouse"),
           mouseActive: gl.getUniformLocation(program, "uMouseActive"), shockCenter: gl.getUniformLocation(program, "uShockCenter"),
           shockAge: gl.getUniformLocation(program, "uShockAge"),
@@ -222,18 +198,14 @@ export default function ChampagneHero() {
         canvas.addEventListener("webglcontextlost", onContextLost);
         gl.enable(gl.BLEND);
         gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-        let morph = 0;
         const render = (milliseconds: number) => {
           if (disposed) return;
           const elapsed = milliseconds / 1000 - startedAt;
-          const targetMorph = reducedMotion ? 0 : autoMorph(elapsed);
-          morph += (targetMorph - morph) * 0.025;
           const rect = canvas.getBoundingClientRect();
           const dpr = canvas.width / Math.max(rect.width, 1);
           gl.clearColor(0, 0, 0, 0);
           gl.clear(gl.COLOR_BUFFER_BIT);
           gl.uniform1f(uniforms.time, reducedMotion ? 0 : elapsed);
-          gl.uniform1f(uniforms.morph, morph);
           gl.uniform1f(uniforms.aspect, rect.width / Math.max(rect.height, 1));
           gl.uniform1f(uniforms.pixelRatio, dpr);
           gl.uniform2f(uniforms.mouse, pointer.x, pointer.y);
@@ -272,7 +244,7 @@ export default function ChampagneHero() {
           <p className="brand-hero__note">桃園 · 建築品牌與銷售溝通</p>
         </div>
         <div className="brand-hero__field">
-          <canvas ref={canvasRef} className="brand-hero__canvas" aria-label="由圓圓乙品牌標誌組成、會聚散變形並對滑鼠回應的白光互動粒子" />
+          <canvas ref={canvasRef} className="brand-hero__canvas" aria-label="由圓圓乙品牌標誌組成、會對滑鼠與點擊回應的白光互動粒子" />
           {failed && <div className="brand-hero__fallback" role="status"><NextImage src="/brand-logo.svg" alt="圓圓乙品牌標誌" width={390} height={390} /><p>你的瀏覽器目前無法顯示互動粒子，已顯示品牌標誌。</p></div>}
           <div className="brand-hero__coordinate" aria-hidden="true">FIELD 24.9912°N<br />121.3092°E</div>
         </div>
