@@ -168,7 +168,7 @@ export default function ChampagneHero() {
 
         const screenWidth = window.innerWidth;
         const coarse = window.matchMedia("(pointer: coarse)").matches;
-        const count = reducedMotion ? 3600 : coarse || screenWidth < 720 ? 5200 : screenWidth < 1200 ? 8200 : 11800;
+        const count = Math.round((reducedMotion ? 3600 : coarse || screenWidth < 720 ? 5200 : screenWidth < 1200 ? 8200 : 11800) * 0.8);
         const logoSpanX = screenWidth < 720 ? 0.82 : screenWidth < 1200 ? 0.9 : 0.98;
         const logoSpanY = screenWidth < 720 ? 0.84 : 0.95;
         const logo = new Float32Array(count * 2);
