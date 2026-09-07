@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, Menu, X } from "lucide-react";
+import Image from "next/image";
 
 const navLinks = [
   { href: "/solutions", label: "服務內容" },
@@ -29,7 +30,9 @@ export default function Header() {
     <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled || open ? "bg-bg/95 border-b border-border backdrop-blur-lg" : "bg-transparent"}`}>
       <div className="mx-auto flex h-18 max-w-[1440px] items-center px-5 sm:px-8 lg:h-22 lg:px-12">
         <Link href="/" className={`group flex items-center gap-3 ${homeAtTop ? "text-white" : "text-primary"}`} aria-label="圓圓乙創意留名首頁">
-          <span className={`grid h-9 w-9 place-items-center border border-current font-heading text-lg transition-colors group-hover:bg-cta group-hover:text-white ${homeAtTop ? "text-white" : "text-cta"}`}>乙</span>
+          <span className={`grid h-10 w-10 place-items-center border border-current bg-white p-1.5 transition-transform duration-300 group-hover:rotate-6 ${homeAtTop ? "text-white" : "text-cta"}`}>
+            <Image src="/brand-logo.svg" alt="" width={30} height={30} className="h-full w-full object-contain" />
+          </span>
           <span className="leading-none">
             <strong className="block font-heading text-base tracking-[.12em]">圓圓乙創意留名</strong>
             <small className={`mt-1 block text-[9px] font-semibold tracking-[.2em] ${homeAtTop ? "text-white/55" : "text-muted"}`}>REAL ESTATE CREATIVE</small>
