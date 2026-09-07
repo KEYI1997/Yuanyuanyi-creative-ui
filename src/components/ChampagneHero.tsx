@@ -79,9 +79,9 @@ void main() {
   if (distanceFromCenter > 0.5) discard;
   float core = smoothstep(0.22, 0.02, distanceFromCenter);
   float glow = smoothstep(0.5, 0.12, distanceFromCenter);
-  vec3 navy = vec3(0.075, 0.105, 0.19);
-  vec3 gold = vec3(0.69, 0.54, 0.22);
-  vec3 base = vTone < 0.64 ? navy : gold;
+  vec3 coffee = vec3(0.27, 0.14, 0.075);
+  vec3 caramel = vec3(0.68, 0.43, 0.23);
+  vec3 base = vTone < 0.64 ? coffee : caramel;
   vec3 color = mix(base, base * 1.16, core * 0.22);
   float alpha = (glow * 0.56 + core * 0.96) * vAlpha;
   outColor = vec4(color, alpha);
@@ -161,10 +161,17 @@ export default function ChampagneHero() {
             if (pixels[(y * sampleSize + x) * 4 + 3] > 72) candidates.push([x, y]);
           }
         }
+        if (!candidates.length) { setFailed(true); return; }
+        const bounds = candidates.reduce((box, [x, y]) => ({
+          minX: Math.min(box.minX, x), maxX: Math.max(box.maxX, x),
+          minY: Math.min(box.minY, y), maxY: Math.max(box.maxY, y),
+        }), { minX: sampleSize, maxX: 0, minY: sampleSize, maxY: 0 });
 
         const screenWidth = window.innerWidth;
         const coarse = window.matchMedia("(pointer: coarse)").matches;
         const count = reducedMotion ? 3600 : coarse || screenWidth < 720 ? 5200 : screenWidth < 1200 ? 8200 : 11800;
+        const logoSpanX = screenWidth < 720 ? 0.82 : screenWidth < 1200 ? 0.9 : 0.98;
+        const logoSpanY = screenWidth < 720 ? 0.84 : 0.95;
         const logo = new Float32Array(count * 2);
         const nebula = new Float32Array(count * 2);
         const seed = new Float32Array(count);
@@ -175,8 +182,8 @@ export default function ChampagneHero() {
           const source = candidates[(Math.random() * candidates.length) | 0];
           const jitterX = (Math.random() - 0.5) * 1.8;
           const jitterY = (Math.random() - 0.5) * 1.8;
-          logo[i * 2] = ((source[0] + jitterX) / sampleSize - 0.5) * 1.85;
-          logo[i * 2 + 1] = (0.5 - (source[1] + jitterY) / sampleSize) * 1.85;
+          logo[i * 2] = ((((source[0] + jitterX) - bounds.minX) / (bounds.maxX - bounds.minX)) - 0.5) * 2 * logoSpanX;
+          logo[i * 2 + 1] = (0.5 - (((source[1] + jitterY) - bounds.minY) / (bounds.maxY - bounds.minY))) * 2 * logoSpanY;
           const s = Math.random();
           const arm = i % 4;
           const theta = Math.random() * Math.PI * 2 + arm * 1.38;
@@ -185,7 +192,7 @@ export default function ChampagneHero() {
           nebula[i * 2] = Math.cos(spiral) * radius * (1.05 + Math.sin(theta * 3.0) * 0.1);
           nebula[i * 2 + 1] = Math.sin(spiral) * radius * 0.76 + Math.sin(theta * 2.0) * 0.055;
           seed[i] = s;
-          size[i] = s > 0.965 ? 6.0 + Math.random() * 3.6 : s > 0.76 ? 3.1 + Math.random() * 2.3 : 1.9 + Math.random() * 2.0;
+          size[i] = s > 0.965 ? 10.0 + Math.random() * 5.2 : s > 0.76 ? 5.0 + Math.random() * 3.2 : 3.0 + Math.random() * 2.4;
           tone[i] = Math.random();
         }
 

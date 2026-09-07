@@ -1,29 +1,29 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-primary: #1F2A44;
-  --color-primary-light: #43506B;
-  --color-cta: #8B6828;
-  --color-cta-hover: #6F511B;
-  --color-accent: #C6A75E;
-  --color-accent-hover: #A88946;
-  --color-warm: #E8DCC8;
-  --color-warm-light: #F4EEE5;
+  --color-primary: #4A2B1B;
+  --color-primary-light: #755238;
+  --color-cta: #8F5E3A;
+  --color-cta-hover: #6B4128;
+  --color-accent: #B9834F;
+  --color-accent-hover: #97673D;
+  --color-warm: #E8D5BE;
+  --color-warm-light: #F4E9DD;
   --color-bg: #FFFFFF;
-  --color-bg-alt: #F7F3ED;
+  --color-bg-alt: #F6EEE6;
   --color-white: #FFFFFF;
-  --color-dark: #1F2A44;
-  --color-muted: #687083;
-  --color-border: #E6E0D6;
+  --color-dark: #3B2418;
+  --color-muted: #795F4F;
+  --color-border: #E4D4C4;
   --font-heading: "Noto Serif TC", "Songti TC", Georgia, serif;
   --font-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
 }
 
 :root {
   --paper: #FFFFFF;
-  --ink: #1F2A44;
-  --brick: #8B6828;
-  --line: #E6E0D6;
+  --ink: #4A2B1B;
+  --brick: #8F5E3A;
+  --line: #E4D4C4;
 }
 
 * { box-sizing: border-box; }
@@ -47,7 +47,7 @@ h1, h2, h3, h4, h5, h6 {
 button, a, input, textarea, select { -webkit-tap-highlight-color: transparent; }
 button, a { outline-offset: 4px; }
 
-::selection { background: #C6A75E; color: #1F2A44; }
+::selection { background: #B9834F; color: #3B2418; }
 
 .eyebrow {
   display: inline-flex;
@@ -64,8 +64,8 @@ button, a { outline-offset: 4px; }
 
 .paper-grid {
   background-image:
-    linear-gradient(rgba(31, 37, 34, .055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(31, 37, 34, .055) 1px, transparent 1px);
+    linear-gradient(rgba(74, 43, 27, .055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 43, 27, .055) 1px, transparent 1px);
   background-size: 42px 42px;
 }
 
