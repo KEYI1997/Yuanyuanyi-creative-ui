@@ -27,7 +27,7 @@ export default function CookieConsent() {
       role="dialog"
       aria-label="Cookie 使用同意"
       className="fixed bottom-6 left-4 right-4 md:left-auto md:right-6 md:max-w-sm z-50
-                 bg-primary text-white/90 px-6 py-5
+                 bg-bg-alt text-white/90 px-6 py-5
                  border border-white/10
                  animate-[revealUp_.4s_cubic-bezier(.2,.75,.25,1)_forwards]"
     >
@@ -44,7 +44,7 @@ export default function CookieConsent() {
       <button
         onClick={accept}
         className="w-full py-2.5 text-sm font-medium tracking-wide
-                   border border-white/30 hover:bg-white hover:text-primary
+                   border border-white/30 hover:bg-white hover:text-bg
                    transition-colors duration-200"
       >
         我瞭解了
