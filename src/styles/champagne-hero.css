@@ -56,11 +56,10 @@
 .brand-hero__field { position: relative; height: min(78vh, 860px); min-height: 560px; isolation: isolate; cursor: crosshair; }
 .brand-hero__field::before { content: ""; position: absolute; inset: 6% 2% 5%; border: 1px solid rgba(91, 209, 255, .16); background: linear-gradient(rgba(91, 209, 255, .08) 1px, transparent 1px), linear-gradient(90deg, rgba(91, 209, 255, .08) 1px, transparent 1px); background-size: 52px 52px; mask-image: linear-gradient(180deg, transparent 0%, #000 10%, #000 90%, transparent 100%); }
 .brand-hero__canvas { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; touch-action: none; }
-.brand-hero__solid-logo { position: absolute; z-index: 2; top: 50%; left: 50%; width: min(74%, 620px); height: auto; transform: translate(-50%, -50%); pointer-events: none; filter: brightness(0) invert(1) drop-shadow(0 0 26px rgba(53, 201, 255, .18)); }
-
 .brand-hero__coordinate { position: absolute; top: 9%; right: 4%; color: rgba(173, 209, 255, .52); font: 700 .6rem/1.7 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .1em; text-align: right; }
 
-.brand-hero__fallback { position: absolute; z-index: 4; inset: auto 1.5rem 1.5rem; padding: .75rem 1rem; background: rgba(6, 10, 20, .9); text-align: center; }
+.brand-hero__fallback { position: absolute; z-index: 4; inset: 12% 8%; display: grid; place-items: center; gap: 1rem; padding: 1.25rem; background: rgba(6, 10, 20, .92); text-align: center; }
+.brand-hero__fallback img { width: min(56%, 390px); height: auto; filter: brightness(0) saturate(100%) invert(69%) sepia(36%) saturate(930%) hue-rotate(357deg) brightness(103%) contrast(94%); }
 .brand-hero__fallback p { margin: 0; font-size: .9rem; color: rgba(220, 232, 255, .74); }
 .brand-hero__scroll { position: absolute; z-index: 3; left: clamp(1.25rem, 4vw, 4.5rem); bottom: 1.8rem; display: flex; align-items: center; gap: .8rem; color: rgba(173, 198, 232, .5); font-size: .58rem; font-weight: 700; letter-spacing: .18em; }
 .brand-hero__scroll span { display: block; width: 2.3rem; height: 1px; background: var(--gold); }
@@ -85,6 +84,5 @@
   .brand-hero__link { min-height: 48px; font-size: .84rem; }
   .brand-hero__field { height: 54vh; min-height: 420px; margin: -.8rem -.65rem 0; }
   .brand-hero__field::before { inset: 4% 0 8%; background-size: 40px 40px; }
-  .brand-hero__solid-logo { width: min(84%, 470px); }
   .brand-hero__coordinate, .brand-hero__scroll { display: none; }
 }
