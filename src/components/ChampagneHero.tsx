@@ -17,6 +17,8 @@ uniform float uAspect;
 uniform float uPixelRatio;
 uniform vec2 uMouse;
 uniform float uMouseActive;
+uniform vec2 uShockCenter;
+uniform float uShockAge;
 out float vAlpha;
 out float vSeed;
 
@@ -43,6 +45,15 @@ void main() {
   vec2 direction = mouseDistance > 0.001 ? mouseDelta / mouseDistance : vec2(1.0, 0.0);
   p += direction * push * 0.2;
   p += vec2(-direction.y, direction.x) * push * (0.035 + aSeed * 0.045);
+
+  if (uShockAge >= 0.0 && uShockAge < 3.6) {
+    vec2 shockDelta = p - uShockCenter;
+    float shockDistance = length(shockDelta);
+    float ring = uShockAge * 0.42;
+    float wave = exp(-pow((shockDistance - ring) / 0.065, 2.0)) * exp(-uShockAge * 0.58);
+    vec2 shockDirection = shockDistance > 0.001 ? shockDelta / shockDistance : vec2(0.0, 1.0);
+    p += shockDirection * wave * (0.22 + 0.1 * aSeed);
+  }
 
   gl_Position = vec4(p.x / uAspect, p.y, 0.0, 1.0);
   gl_PointSize = aSize * uPixelRatio * (1.0 + push * 0.7);
@@ -104,6 +115,7 @@ export default function ChampagneHero() {
     let cleanup = () => {};
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const pointer = { x: 0, y: 0, active: 0 };
+    const shock = { at: -100, x: 0, y: 0 };
     const startedAt = performance.now() / 1000;
     const image = new Image();
     image.src = "/brand-logo.svg";
@@ -121,7 +133,7 @@ export default function ChampagneHero() {
 
         const screenWidth = window.innerWidth;
         const coarse = window.matchMedia("(pointer: coarse)").matches;
-        const count = Math.round((reducedMotion ? 3600 : coarse || screenWidth < 720 ? 5200 : screenWidth < 1200 ? 8200 : 11800) * 0.64);
+        const count = Math.round((reducedMotion ? 3600 : coarse || screenWidth < 720 ? 5200 : screenWidth < 1200 ? 8200 : 11800) * 0.52);
         const sourceCanvas = document.createElement("canvas");
         sourceCanvas.width = 420;
         sourceCanvas.height = 420;
@@ -177,7 +189,8 @@ export default function ChampagneHero() {
         const uniforms = {
           time: gl.getUniformLocation(program, "uTime"), morph: gl.getUniformLocation(program, "uMorph"), aspect: gl.getUniformLocation(program, "uAspect"),
           pixelRatio: gl.getUniformLocation(program, "uPixelRatio"), mouse: gl.getUniformLocation(program, "uMouse"),
-          mouseActive: gl.getUniformLocation(program, "uMouseActive"),
+          mouseActive: gl.getUniformLocation(program, "uMouseActive"), shockCenter: gl.getUniformLocation(program, "uShockCenter"),
+          shockAge: gl.getUniformLocation(program, "uShockAge"),
         };
         const resize = () => {
           const rect = canvas.getBoundingClientRect();
@@ -194,11 +207,18 @@ export default function ChampagneHero() {
           pointer.active = 1;
         };
         const onLeave = () => { pointer.active = 0; };
+        const onDown = (event: PointerEvent) => {
+          onPointer(event);
+          shock.at = performance.now() / 1000;
+          shock.x = pointer.x;
+          shock.y = pointer.y;
+        };
         const onContextLost = (event: Event) => { event.preventDefault(); setFailed(true); };
         resize();
         window.addEventListener("resize", resize, { passive: true });
         canvas.addEventListener("pointermove", onPointer, { passive: true });
         canvas.addEventListener("pointerleave", onLeave);
+        canvas.addEventListener("pointerdown", onDown, { passive: true });
         canvas.addEventListener("webglcontextlost", onContextLost);
         gl.enable(gl.BLEND);
         gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
@@ -218,6 +238,8 @@ export default function ChampagneHero() {
           gl.uniform1f(uniforms.pixelRatio, dpr);
           gl.uniform2f(uniforms.mouse, pointer.x, pointer.y);
           gl.uniform1f(uniforms.mouseActive, pointer.active);
+          gl.uniform2f(uniforms.shockCenter, shock.x, shock.y);
+          gl.uniform1f(uniforms.shockAge, milliseconds / 1000 - shock.at);
           gl.drawArrays(gl.POINTS, 0, count);
           frame = requestAnimationFrame(render);
         };
@@ -226,6 +248,7 @@ export default function ChampagneHero() {
           window.removeEventListener("resize", resize);
           canvas.removeEventListener("pointermove", onPointer);
           canvas.removeEventListener("pointerleave", onLeave);
+          canvas.removeEventListener("pointerdown", onDown);
           canvas.removeEventListener("webglcontextlost", onContextLost);
         };
       } catch { setFailed(true); }
