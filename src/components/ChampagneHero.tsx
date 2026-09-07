@@ -51,10 +51,10 @@ void main() {
   if (distanceFromCenter > 0.5) discard;
   float core = smoothstep(0.2, 0.025, distanceFromCenter);
   float glow = smoothstep(0.5, 0.08, distanceFromCenter);
-  vec3 champagne = vec3(0.86, 0.53, 0.22);
-  vec3 highlight = vec3(1.0, 0.78, 0.42);
-  vec3 color = mix(champagne, highlight, core * 0.38);
-  float alpha = (glow * 0.58 + core * 0.98) * vAlpha;
+  vec3 white = vec3(0.93, 0.96, 1.0);
+  vec3 highlight = vec3(1.0, 1.0, 1.0);
+  vec3 color = mix(white, highlight, core * 0.46);
+  float alpha = (glow * 0.64 + core * 1.0) * vAlpha;
   outColor = vec4(color, alpha);
 }`;
 
@@ -214,7 +214,7 @@ export default function ChampagneHero() {
           <p className="brand-hero__note">桃園 · 建築品牌與銷售溝通</p>
         </div>
         <div className="brand-hero__field">
-          <canvas ref={canvasRef} className="brand-hero__canvas" aria-label="由圓圓乙品牌標誌組成、滑鼠靠近時會散開的香檳金互動粒子" />
+          <canvas ref={canvasRef} className="brand-hero__canvas" aria-label="由圓圓乙品牌標誌組成、滑鼠靠近時會散開的白光互動粒子" />
           {failed && <div className="brand-hero__fallback" role="status"><NextImage src="/brand-logo.svg" alt="圓圓乙品牌標誌" width={390} height={390} /><p>你的瀏覽器目前無法顯示互動粒子，已顯示品牌標誌。</p></div>}
           <div className="brand-hero__coordinate" aria-hidden="true">FIELD 24.9912°N<br />121.3092°E</div>
         </div>

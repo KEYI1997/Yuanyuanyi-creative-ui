@@ -59,7 +59,7 @@
 .brand-hero__coordinate { position: absolute; top: 9%; right: 4%; color: rgba(173, 209, 255, .52); font: 700 .6rem/1.7 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .1em; text-align: right; }
 
 .brand-hero__fallback { position: absolute; z-index: 4; inset: 12% 8%; display: grid; place-items: center; gap: 1rem; padding: 1.25rem; background: rgba(6, 10, 20, .92); text-align: center; }
-.brand-hero__fallback img { width: min(56%, 390px); height: auto; filter: brightness(0) saturate(100%) invert(69%) sepia(36%) saturate(930%) hue-rotate(357deg) brightness(103%) contrast(94%); }
+.brand-hero__fallback img { width: min(56%, 390px); height: auto; filter: brightness(0) invert(1) drop-shadow(0 0 24px rgba(255, 255, 255, .24)); }
 .brand-hero__fallback p { margin: 0; font-size: .9rem; color: rgba(220, 232, 255, .74); }
 .brand-hero__scroll { position: absolute; z-index: 3; left: clamp(1.25rem, 4vw, 4.5rem); bottom: 1.8rem; display: flex; align-items: center; gap: .8rem; color: rgba(173, 198, 232, .5); font-size: .58rem; font-weight: 700; letter-spacing: .18em; }
 .brand-hero__scroll span { display: block; width: 2.3rem; height: 1px; background: var(--gold); }
