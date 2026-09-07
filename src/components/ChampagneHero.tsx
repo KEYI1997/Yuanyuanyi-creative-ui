@@ -168,7 +168,7 @@ export default function ChampagneHero() {
 
         const screenWidth = window.innerWidth;
         const coarse = window.matchMedia("(pointer: coarse)").matches;
-        const count = Math.round((reducedMotion ? 3600 : coarse || screenWidth < 720 ? 5200 : screenWidth < 1200 ? 8200 : 11800) * 0.8);
+        const count = Math.round((reducedMotion ? 3600 : coarse || screenWidth < 720 ? 5200 : screenWidth < 1200 ? 8200 : 11800) * 0.64);
         const logoSpanX = screenWidth < 720 ? 0.82 : screenWidth < 1200 ? 0.9 : 0.98;
         const logoSpanY = screenWidth < 720 ? 0.84 : 0.95;
         const logo = new Float32Array(count * 2);
@@ -191,7 +191,7 @@ export default function ChampagneHero() {
           nebula[i * 2] = Math.cos(spiral) * radius * (1.05 + Math.sin(theta * 3.0) * 0.1);
           nebula[i * 2 + 1] = Math.sin(spiral) * radius * 0.76 + Math.sin(theta * 2.0) * 0.055;
           seed[i] = s;
-          size[i] = s > 0.965 ? 10.0 + Math.random() * 5.2 : s > 0.76 ? 5.0 + Math.random() * 3.2 : 3.0 + Math.random() * 2.4;
+          size[i] = s > 0.965 ? 20.0 + Math.random() * 10.4 : s > 0.76 ? 10.0 + Math.random() * 6.4 : 6.0 + Math.random() * 4.8;
           tone[i] = Math.random();
         }
 
