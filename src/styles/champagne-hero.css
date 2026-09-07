@@ -55,13 +55,13 @@
 
 .brand-hero__field { position: relative; height: min(78vh, 860px); min-height: 560px; isolation: isolate; cursor: crosshair; }
 .brand-hero__field::before { content: ""; position: absolute; inset: 6% 2% 5%; border: 1px solid rgba(74, 43, 27, .1); background: linear-gradient(rgba(74, 43, 27, .055) 1px, transparent 1px), linear-gradient(90deg, rgba(74, 43, 27, .055) 1px, transparent 1px); background-size: 52px 52px; mask-image: linear-gradient(180deg, transparent 0%, #000 10%, #000 90%, transparent 100%); }
-.brand-hero__canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; }
+.brand-hero__canvas { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; touch-action: none; }
+.brand-hero__solid-logo { position: absolute; z-index: 2; top: 50%; left: 50%; width: min(74%, 620px); height: auto; transform: translate(-50%, -50%); pointer-events: none; filter: drop-shadow(0 16px 24px rgba(74, 43, 27, .12)); }
 
 .brand-hero__coordinate { position: absolute; top: 9%; right: 4%; color: rgba(74, 43, 27, .4); font: 700 .6rem/1.7 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .1em; text-align: right; }
 
-.brand-hero__fallback { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 1rem; text-align: center; }
-.brand-hero__fallback img { width: min(56%, 390px); opacity: .9; }
-.brand-hero__fallback p { font-size: .9rem; color: rgba(74, 43, 27, .68); }
+.brand-hero__fallback { position: absolute; z-index: 4; inset: auto 1.5rem 1.5rem; padding: .75rem 1rem; background: rgba(255, 255, 255, .9); text-align: center; }
+.brand-hero__fallback p { margin: 0; font-size: .9rem; color: rgba(74, 43, 27, .68); }
 .brand-hero__scroll { position: absolute; z-index: 3; left: clamp(1.25rem, 4vw, 4.5rem); bottom: 1.8rem; display: flex; align-items: center; gap: .8rem; color: rgba(74, 43, 27, .42); font-size: .58rem; font-weight: 700; letter-spacing: .18em; }
 .brand-hero__scroll span { display: block; width: 2.3rem; height: 1px; background: var(--gold); }
 
@@ -85,5 +85,6 @@
   .brand-hero__link { min-height: 48px; font-size: .84rem; }
   .brand-hero__field { height: 54vh; min-height: 420px; margin: -.8rem -.65rem 0; }
   .brand-hero__field::before { inset: 4% 0 8%; background-size: 40px 40px; }
+  .brand-hero__solid-logo { width: min(84%, 470px); }
   .brand-hero__coordinate, .brand-hero__scroll { display: none; }
 }
