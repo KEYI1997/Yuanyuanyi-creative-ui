@@ -16,6 +16,7 @@ uniform float uPixelRatio;
 uniform vec2 uMouse;
 uniform float uMouseActive;
 out float vAlpha;
+out float vSeed;
 
 void main() {
   vec2 p = aPosition;
@@ -38,11 +39,13 @@ void main() {
   gl_PointSize = aSize * uPixelRatio * (1.0 + push * 0.65);
   float reveal = smoothstep(0.9, 0.24, length(uMouse)) * uMouseActive;
   vAlpha = reveal * (0.62 + 0.38 * sin(phase + uTime * (0.45 + aSeed * 0.35)));
+  vSeed = aSeed;
 }`;
 
 const fragmentShader = `#version 300 es
 precision highp float;
 in float vAlpha;
+in float vSeed;
 out vec4 outColor;
 
 void main() {
@@ -51,8 +54,11 @@ void main() {
   if (distanceFromCenter > 0.5) discard;
   float core = smoothstep(0.22, 0.02, distanceFromCenter);
   float glow = smoothstep(0.5, 0.12, distanceFromCenter);
-  vec3 coffee = vec3(0.31, 0.17, 0.095);
-  vec3 color = mix(coffee, coffee * 1.16, core * 0.22);
+  vec3 blue = vec3(0.08, 0.2, 0.95);
+  vec3 cyan = vec3(0.06, 0.78, 1.0);
+  vec3 violet = vec3(0.35, 0.2, 0.98);
+  vec3 color = mix(blue, cyan, smoothstep(0.18, 0.82, vSeed));
+  color = mix(color, violet, smoothstep(0.82, 1.0, vSeed) * 0.52);
   float alpha = (glow * 0.52 + core * 0.92) * vAlpha;
   outColor = vec4(color, alpha);
 }`;

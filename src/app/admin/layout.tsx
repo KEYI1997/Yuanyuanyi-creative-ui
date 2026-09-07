@@ -44,7 +44,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   ];
 
   return (
-    <div className="min-h-screen bg-[#f3f1ec] text-primary md:grid md:grid-cols-[230px_1fr]">
+    <div className="min-h-screen bg-bg text-primary md:grid md:grid-cols-[230px_1fr]">
       <aside className="border-b border-border bg-dark px-5 py-5 text-white md:fixed md:inset-y-0 md:w-[230px] md:border-b-0 md:px-6 md:py-8">
         <div className="flex items-center justify-between md:block">
           <Link href="/admin" className="font-heading text-lg tracking-[.08em]">圓圓乙<span className="ml-2 font-body text-[9px] tracking-[.18em] text-warm">ADMIN</span></Link>

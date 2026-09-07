@@ -210,7 +210,7 @@ export default function AnalyticsPage() {
                   className={`cursor-pointer px-3 py-1 text-sm transition ${
                     timeRange === t
                       ? "bg-cta text-white"
-                      : "bg-white text-muted hover:bg-gray-100"
+                      : "bg-white text-muted hover:bg-bg-alt"
                   }`}
                 >
                   {t === "year" ? "年" : t === "month" ? "月" : "日"}
@@ -343,7 +343,7 @@ export default function AnalyticsPage() {
                 {views.slice(0, visitorLimit).map((v, i) => (
                   <tr
                     key={v.id}
-                    className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                    className={i % 2 === 0 ? "bg-white" : "bg-bg-alt"}
                   >
                     <td className="whitespace-nowrap px-3 py-2 text-xs">
                       {formatTime(v.created_at)}
@@ -354,11 +354,11 @@ export default function AnalyticsPage() {
                     </td>
                     <td className="px-3 py-2">
                       {v.referrer_domain ? (
-                        <span className="rounded bg-gray-200 px-2 py-0.5 text-xs text-gray-700">
+                        <span className="rounded bg-white/10 px-2 py-0.5 text-xs text-primary-light">
                           {v.referrer_domain}
                         </span>
                       ) : (
-                        <span className="text-xs text-gray-400">直接</span>
+                        <span className="text-xs text-muted">直接</span>
                       )}
                     </td>
                   </tr>
@@ -391,7 +391,7 @@ export default function AnalyticsPage() {
                 {ipCounts.slice(0, ipLimit).map((item, i) => (
                   <tr
                     key={item.ip}
-                    className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                    className={i % 2 === 0 ? "bg-white" : "bg-bg-alt"}
                   >
                     <td className="px-3 py-2 text-center">
                       <span className="text-cta">{item.ip}</span>
