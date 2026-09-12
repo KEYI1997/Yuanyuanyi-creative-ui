@@ -27,6 +27,7 @@ void main() {
     sin(uTime * (0.2 + aSeed * 0.15) + phase + p.y * 4.0),
     cos(uTime * (0.17 + aSeed * 0.13) + phase + p.x * 4.0)
   ) * 0.004;
+  p.y += sin(uTime * 0.34) * 0.045 + sin(uTime * 0.19 + 0.8) * 0.016;
   float radius = length(p);
   float spin = (0.004 + 0.008 * aSeed) * sin(uTime * 0.35 + phase);
   float cs = cos(spin);
@@ -102,7 +103,7 @@ export default function ChampagneHero() {
     const shock = { at: -100, x: 0, y: 0 };
     const startedAt = performance.now() / 1000;
     const image = new Image();
-    image.src = "/brand-logo.svg";
+    image.src = "/two-square-mark.svg";
 
     image.onload = () => {
       if (disposed) return;
@@ -244,8 +245,8 @@ export default function ChampagneHero() {
           <p className="brand-hero__note">桃園 · 建築品牌與銷售溝通</p>
         </div>
         <div className="brand-hero__field">
-          <canvas ref={canvasRef} className="brand-hero__canvas" aria-label="由圓圓乙品牌標誌組成、會對滑鼠與點擊回應的白光互動粒子" />
-          {failed && <div className="brand-hero__fallback" role="status"><NextImage src="/brand-logo.svg" alt="圓圓乙品牌標誌" width={390} height={390} /><p>你的瀏覽器目前無法顯示互動粒子，已顯示品牌標誌。</p></div>}
+          <canvas ref={canvasRef} className="brand-hero__canvas" aria-label="由兩個方塊標誌組成、會上下漂浮並對滑鼠與點擊回應的白光互動粒子" />
+          {failed && <div className="brand-hero__fallback" role="status"><NextImage src="/two-square-mark.svg" alt="圓圓乙雙方塊品牌標誌" width={390} height={390} /><p>你的瀏覽器目前無法顯示互動粒子，已顯示品牌標誌。</p></div>}
           <div className="brand-hero__coordinate" aria-hidden="true">FIELD 24.9912°N<br />121.3092°E</div>
         </div>
       </div>
