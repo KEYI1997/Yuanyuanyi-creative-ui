@@ -10,6 +10,7 @@ precision highp float;
 in vec2 aLogo;
 in float aSeed;
 in float aSize;
+in vec3 aColor;
 uniform float uTime;
 uniform float uAspect;
 uniform float uPixelRatio;
@@ -19,6 +20,7 @@ uniform vec2 uShockCenter;
 uniform float uShockAge;
 out float vAlpha;
 out float vSeed;
+out vec3 vColor;
 
 void main() {
   vec2 p = aLogo;
@@ -54,26 +56,21 @@ void main() {
   gl_Position = vec4(p.x / uAspect, p.y, 0.0, 1.0);
   gl_PointSize = aSize * uPixelRatio * (1.0 + push * 0.7);
   vSeed = aSeed;
+  vColor = aColor;
   vAlpha = 0.74 + 0.26 * sin(phase + uTime * (0.42 + aSeed * 0.3));
 }`;
 
 const fragmentShader = `#version 300 es
 precision highp float;
 in float vAlpha;
-in float vSeed;
+in vec3 vColor;
 out vec4 outColor;
 
 void main() {
   vec2 point = gl_PointCoord - 0.5;
-  float distanceFromCenter = length(point);
-  if (distanceFromCenter > 0.5) discard;
-  float core = smoothstep(0.2, 0.025, distanceFromCenter);
-  float glow = smoothstep(0.5, 0.08, distanceFromCenter);
-  vec3 white = vec3(0.93, 0.96, 1.0);
-  vec3 highlight = vec3(1.0, 1.0, 1.0);
-  vec3 color = mix(white, highlight, core * 0.46);
-  float alpha = (glow * 0.64 + core * 1.0) * vAlpha;
-  outColor = vec4(color, alpha);
+  if (max(abs(point.x), abs(point.y)) > 0.5) discard;
+  float edge = 1.0 - smoothstep(0.43, 0.5, max(abs(point.x), abs(point.y)));
+  outColor = vec4(vColor, edge * vAlpha * 0.84);
 }`;
 
 function createShader(gl: WebGL2RenderingContext, type: number, source: string) {
@@ -138,6 +135,7 @@ export default function ChampagneHero() {
         const positions = new Float32Array(count * 2);
         const seed = new Float32Array(count);
         const size = new Float32Array(count);
+        const colors = new Float32Array(count * 3);
         const logoSpanX = screenWidth < 720 ? 0.82 : screenWidth < 1200 ? 0.9 : 0.98;
         const logoSpanY = screenWidth < 720 ? 0.84 : 0.95;
         for (let i = 0; i < count; i++) {
@@ -148,7 +146,11 @@ export default function ChampagneHero() {
           positions[i * 2 + 1] = (0.5 - (((source[1] + jitterY) - bounds.minY) / (bounds.maxY - bounds.minY))) * 2 * logoSpanY;
           const s = Math.random();
           seed[i] = s;
-          size[i] = s > 0.965 ? 13 + Math.random() * 7 : s > 0.76 ? 7 + Math.random() * 4.6 : 4 + Math.random() * 3.2;
+          const pixelIndex = (source[1] * 420 + source[0]) * 4;
+          colors[i * 3] = pixels[pixelIndex] / 255;
+          colors[i * 3 + 1] = pixels[pixelIndex + 1] / 255;
+          colors[i * 3 + 2] = pixels[pixelIndex + 2] / 255;
+          size[i] = s > 0.97 ? 4.4 + Math.random() * 1.4 : s > 0.78 ? 2.9 + Math.random() * 1.1 : 1.8 + Math.random() * 0.9;
         }
 
         const bind = (name: string, values: Float32Array, widthPerVertex: number) => {
@@ -162,6 +164,7 @@ export default function ChampagneHero() {
         bind("aLogo", positions, 2);
         bind("aSeed", seed, 1);
         bind("aSize", size, 1);
+        bind("aColor", colors, 3);
 
         const uniforms = {
           time: gl.getUniformLocation(program, "uTime"), aspect: gl.getUniformLocation(program, "uAspect"),
@@ -245,7 +248,7 @@ export default function ChampagneHero() {
           <p className="brand-hero__note">桃園 · 建築品牌與銷售溝通</p>
         </div>
         <div className="brand-hero__field">
-          <canvas ref={canvasRef} className="brand-hero__canvas" aria-label="由兩個方塊標誌組成、會上下漂浮並對滑鼠與點擊回應的白光互動粒子" />
+          <canvas ref={canvasRef} className="brand-hero__canvas" aria-label="由兩個立體方塊標誌組成、會上下漂浮並對滑鼠與點擊回應的像素粒子" />
           {failed && <div className="brand-hero__fallback" role="status"><NextImage src="/two-square-mark.svg" alt="圓圓乙雙方塊品牌標誌" width={390} height={390} /><p>你的瀏覽器目前無法顯示互動粒子，已顯示品牌標誌。</p></div>}
           <div className="brand-hero__coordinate" aria-hidden="true">FIELD 24.9912°N<br />121.3092°E</div>
         </div>

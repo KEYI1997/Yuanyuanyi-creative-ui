@@ -1,29 +1,29 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-primary: #F3F7FF;
-  --color-primary-light: #B9C8E2;
-  --color-cta: #35C9FF;
-  --color-cta-hover: #7A63FF;
-  --color-accent: #8C78FF;
-  --color-accent-hover: #B5A8FF;
-  --color-warm: #65E8FF;
-  --color-warm-light: #B6F7FF;
-  --color-bg: #05070D;
-  --color-bg-alt: #0B1020;
-  --color-white: #F3F7FF;
-  --color-dark: #020308;
-  --color-muted: #96A6C4;
-  --color-border: #24314B;
+  --color-primary: #EFF4E5;
+  --color-primary-light: #B8C9A0;
+  --color-cta: #B9E34B;
+  --color-cta-hover: #D4F76A;
+  --color-accent: #9DC938;
+  --color-accent-hover: #C8F45B;
+  --color-warm: #B9E34B;
+  --color-warm-light: #DDF59A;
+  --color-bg: #050605;
+  --color-bg-alt: #10150B;
+  --color-white: #EFF4E5;
+  --color-dark: #030403;
+  --color-muted: #A4B28A;
+  --color-border: #273017;
   --font-heading: "Noto Serif TC", "Songti TC", Georgia, serif;
   --font-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
 }
 
 :root {
-  --paper: #05070D;
-  --ink: #F3F7FF;
-  --brick: #35C9FF;
-  --line: #24314B;
+  --paper: #050605;
+  --ink: #EFF4E5;
+  --brick: #B9E34B;
+  --line: #273017;
 }
 
 * { box-sizing: border-box; }
@@ -47,7 +47,7 @@ h1, h2, h3, h4, h5, h6 {
 button, a, input, textarea, select { -webkit-tap-highlight-color: transparent; }
 button, a { outline-offset: 4px; }
 
-::selection { background: #35C9FF; color: #05070D; }
+::selection { background: #B9E34B; color: #050605; }
 
 .eyebrow {
   display: inline-flex;
@@ -64,8 +64,8 @@ button, a { outline-offset: 4px; }
 
 .paper-grid {
   background-image:
-    linear-gradient(rgba(53, 201, 255, .09) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(53, 201, 255, .09) 1px, transparent 1px);
+    linear-gradient(rgba(185, 227, 75, .09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(185, 227, 75, .09) 1px, transparent 1px);
   background-size: 42px 42px;
 }
 
@@ -85,7 +85,7 @@ button, a { outline-offset: 4px; }
 .rounded-lg, .rounded-xl, .rounded-2xl { border-radius: 2px; }
 .rounded-full { border-radius: 999px; }
 .shadow-sm, .shadow-md, .shadow-lg { box-shadow: none; }
-.bg-white { background-color: #0B1020; }
+.bg-white { background-color: #10150B; }
 input, textarea, select { font: inherit; }
 input::placeholder, textarea::placeholder { color: #657493; }
 input:focus, textarea:focus, select:focus { outline: none; }
