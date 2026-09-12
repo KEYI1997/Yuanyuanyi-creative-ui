@@ -1,11 +1,11 @@
 <svg width="420" height="420" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g>
-    <g>
+    <g transform="rotate(-12 153 145)">
       <path fill="#B9E34B" d="m153 61 80 48-80 48-80-48 80-48Z"/>
       <path fill="#759D27" d="m73 109 80 48v96l-80-48v-96Z"/>
       <path fill="#9DC938" d="m233 109-80 48v96l80-48v-96Z"/>
     </g>
-    <g>
+    <g transform="rotate(16 267 275)">
       <path fill="#C8F45B" d="m267 191 80 48-80 48-80-48 80-48Z"/>
       <path fill="#789F28" d="m187 239 80 48v96l-80-48v-96Z"/>
       <path fill="#A5D23D" d="m347 239-80 48v96l80-48v-96Z"/>
