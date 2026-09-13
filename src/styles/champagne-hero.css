@@ -72,6 +72,18 @@
   touch-action: none;
 }
 
+.glass-icon-mcp {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: #050403 !important;
+  z-index: 1;
+}
+
+.glass-icon-mcp canvas { cursor: grab; }
+.glass-icon-mcp canvas:active { cursor: grabbing; }
+
 .glass-icon-stage__backdrop {
   position: absolute;
   z-index: 0;
@@ -151,7 +163,7 @@
 .glass-icon-stage__label {
   position: absolute;
   z-index: 3;
-  bottom: 7%;
+  bottom: 2.5%;
   margin: 0;
   color: rgba(255, 248, 231, .78);
   font: 700 .65rem/1 var(--font-body);

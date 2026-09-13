@@ -1,72 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef } from "react";
 import { ArrowDownRight } from "lucide-react";
-
-type MotionTarget = { x: number; y: number; scale: number };
-
-function GlassIcon() {
-  const stageRef = useRef<HTMLDivElement>(null);
-  const target = useRef<MotionTarget>({ x: 0, y: 0, scale: 1 });
-  const current = useRef<MotionTarget>({ x: 0, y: 0, scale: 1 });
-
-  useEffect(() => {
-    const stage = stageRef.current;
-    if (!stage) return;
-    let frame = 0;
-    let orbit = -8;
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    const render = () => {
-      const easing = reducedMotion ? 1 : 0.085;
-      current.current.x += (target.current.x - current.current.x) * easing;
-      current.current.y += (target.current.y - current.current.y) * easing;
-      current.current.scale += (target.current.scale - current.current.scale) * easing;
-      if (!reducedMotion) orbit += 0.18;
-      stage.style.setProperty("--tilt-x", `${current.current.x.toFixed(2)}deg`);
-      stage.style.setProperty("--tilt-y", `${current.current.y.toFixed(2)}deg`);
-      stage.style.setProperty("--glass-scale", current.current.scale.toFixed(3));
-      stage.style.setProperty("--orbit", `${orbit.toFixed(2)}deg`);
-      frame = requestAnimationFrame(render);
-    };
-
-    const onPointerMove = (event: PointerEvent) => {
-      const rect = stage.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - 0.5;
-      const y = (event.clientY - rect.top) / rect.height - 0.5;
-      target.current = { x: -y * 18, y: x * 24, scale: 1.035 };
-    };
-    const reset = () => { target.current = { x: 0, y: 0, scale: 1 }; };
-    const onPointerDown = () => { target.current.scale = 1.075; };
-
-    stage.addEventListener("pointermove", onPointerMove, { passive: true });
-    stage.addEventListener("pointerleave", reset);
-    stage.addEventListener("pointerdown", onPointerDown, { passive: true });
-    frame = requestAnimationFrame(render);
-    return () => {
-      cancelAnimationFrame(frame);
-      stage.removeEventListener("pointermove", onPointerMove);
-      stage.removeEventListener("pointerleave", reset);
-      stage.removeEventListener("pointerdown", onPointerDown);
-    };
-  }, []);
-
-  return (
-    <div ref={stageRef} className="glass-icon-stage" role="img" aria-label="YUANYUANYI 玻璃環互動標誌，會緩慢旋轉並回應滑鼠移動">
-      <div className="glass-icon-stage__backdrop" aria-hidden="true">YUANYUANYI</div>
-      <div className="glass-icon-stage__halo" aria-hidden="true" />
-      <div className="glass-icon" aria-hidden="true">
-        <div className="glass-icon__body">
-          <span className="glass-icon__sheen glass-icon__sheen--one" />
-          <span className="glass-icon__sheen glass-icon__sheen--two" />
-          <span className="glass-icon__rim" />
-        </div>
-      </div>
-      <p className="glass-icon-stage__label">YUANYUANYI</p>
-    </div>
-  );
-}
+import LiquidGlassCluster from "./OriginkitGlassIcon";
 
 export default function ChampagneHero() {
   return (
@@ -84,7 +20,26 @@ export default function ChampagneHero() {
           <p className="brand-hero__note">桃園 · 建築品牌與銷售溝通</p>
         </div>
         <div className="brand-hero__field">
-          <GlassIcon />
+          <div className="glass-icon-stage" role="img" aria-label="YUANYUANYI 玻璃環互動標誌，會緩慢旋轉並回應滑鼠拖曳">
+            <LiquidGlassCluster
+              className="glass-icon-mcp"
+              background="#050403"
+              shape="Torus"
+              depth={56}
+              size={94}
+              speed={0}
+              direction="Clockwise"
+              backdrop={{
+                type: "Text",
+                text: "YUANYUANYI",
+                font: { fontFamily: "Arial, Helvetica, sans-serif", fontSize: 112, fontWeight: 800, letterSpacing: 2, lineHeight: 1 },
+                textColor: "#FFFFFF",
+              }}
+              glass={{ tint: "#080808", chromatic: 26, frost: 16 }}
+              orient={{ angleX: 0, angleY: 0, angleZ: 0, offsetX: 0, offsetY: 0 }}
+            />
+            <p className="glass-icon-stage__label">YUANYUANYI</p>
+          </div>
           <div className="brand-hero__coordinate" aria-hidden="true">FIELD 24.9912°N<br />121.3092°E</div>
         </div>
       </div>
