@@ -239,8 +239,8 @@ export default function ChampagneHero() {
       <div className="brand-hero__inner">
         <div className="brand-hero__copy">
           <p className="brand-hero__kicker"><span /> Real estate creative studio</p>
-          <h1 id="hero-title">讓好建築，<br />被市場看見。</h1>
-          <p className="brand-hero__lead">我們整合品牌策略、數位廣告、影像與網站，為每一座建築找到最有力量的說法。</p>
+          <h1 id="hero-title">讓好建築<br />被市場看見</h1>
+          <p className="brand-hero__lead">整合品牌策略、數位廣告、影像與網站，為每一座建築找到最有力量的說法</p>
           <div className="brand-hero__actions">
             <Link href="#contact" className="brand-hero__primary">開始聊聊 <ArrowDownRight size={18} /></Link>
             <Link href="/solutions" className="brand-hero__link">查看服務內容</Link>
