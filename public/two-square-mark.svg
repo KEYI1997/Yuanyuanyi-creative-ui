@@ -1,14 +1,14 @@
 <svg width="420" height="420" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g>
     <g transform="rotate(-12 153 145)">
-      <path fill="#F4DE9A" d="m153 61 80 48-80 48-80-48 80-48Z"/>
-      <path fill="#72552A" fill-opacity=".58" d="m73 109 80 48v96l-80-48v-96Z"/>
-      <path fill="#C29F51" fill-opacity=".84" d="m233 109-80 48v96l80-48v-96Z"/>
+      <path fill="#FFE8A6" d="m153 61 80 48-80 48-80-48 80-48Z"/>
+      <path fill="#9A7436" fill-opacity=".68" d="m73 109 80 48v96l-80-48v-96Z"/>
+      <path fill="#D8B867" fill-opacity=".92" d="m233 109-80 48v96l80-48v-96Z"/>
     </g>
     <g transform="rotate(16 267 275)">
-      <path fill="#E8C875" d="m267 191 80 48-80 48-80-48 80-48Z"/>
-      <path fill="#63471F" fill-opacity=".54" d="m187 239 80 48v96l-80-48v-96Z"/>
-      <path fill="#AD8439" fill-opacity=".8" d="m347 239-80 48v96l80-48v-96Z"/>
+      <path fill="#F5D987" d="m267 191 80 48-80 48-80-48 80-48Z"/>
+      <path fill="#8B652E" fill-opacity=".64" d="m187 239 80 48v96l-80-48v-96Z"/>
+      <path fill="#CAA451" fill-opacity=".9" d="m347 239-80 48v96l80-48v-96Z"/>
     </g>
   </g>
 </svg>

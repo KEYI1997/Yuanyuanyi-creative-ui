@@ -70,7 +70,7 @@ void main() {
   vec2 point = gl_PointCoord - 0.5;
   if (max(abs(point.x), abs(point.y)) > 0.5) discard;
   float edge = 1.0 - smoothstep(0.43, 0.5, max(abs(point.x), abs(point.y)));
-  outColor = vec4(vColor, edge * vAlpha * 0.84);
+  outColor = vec4(vColor, edge * vAlpha * 0.94);
 }`;
 
 function createShader(gl: WebGL2RenderingContext, type: number, source: string) {
