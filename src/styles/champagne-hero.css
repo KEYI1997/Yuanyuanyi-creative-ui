@@ -58,6 +58,110 @@
 .brand-hero__canvas { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; touch-action: none; }
 .brand-hero__coordinate { position: absolute; top: 9%; right: 4%; color: rgba(214, 184, 102, .52); font: 700 .6rem/1.7 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .1em; text-align: right; }
 
+.glass-icon-stage {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --glass-scale: 1;
+  --orbit: -8deg;
+  position: absolute;
+  inset: 3% 3% 0;
+  display: grid;
+  place-items: center;
+  perspective: 1100px;
+  transform-style: preserve-3d;
+  touch-action: none;
+}
+
+.glass-icon-stage__backdrop {
+  position: absolute;
+  z-index: 0;
+  color: rgba(255, 248, 231, .12);
+  font-family: var(--font-body);
+  font-size: clamp(2.8rem, 7vw, 7rem);
+  font-weight: 800;
+  letter-spacing: .16em;
+  line-height: .9;
+  text-align: center;
+  transform: translateZ(-80px) rotate(-8deg);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.glass-icon-stage__halo {
+  position: absolute;
+  z-index: 0;
+  width: min(72%, 520px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(224, 199, 122, .18), rgba(128, 87, 34, .06) 38%, transparent 70%);
+  filter: blur(18px);
+  transform: translateZ(-130px);
+  animation: glass-halo 7s ease-in-out infinite;
+}
+
+.glass-icon {
+  position: relative;
+  z-index: 2;
+  width: min(52%, 390px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  transform: rotateX(var(--tilt-x)) rotateY(calc(var(--tilt-y) + var(--orbit))) scale(var(--glass-scale));
+  transform-style: preserve-3d;
+  transition: filter .6s ease;
+  animation: glass-float 6.4s ease-in-out infinite;
+}
+
+.glass-icon__body {
+  position: relative;
+  width: 74%;
+  height: 74%;
+  border-radius: 48%;
+  padding: clamp(1.05rem, 2vw, 1.65rem);
+  background: conic-gradient(from 205deg, rgba(255, 248, 231, .88), rgba(214, 184, 102, .24) 13%, rgba(255, 255, 255, .78) 23%, rgba(112, 78, 32, .12) 41%, rgba(255, 246, 208, .88) 60%, rgba(134, 92, 34, .2) 77%, rgba(255, 255, 255, .84));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.78), inset -18px -18px 32px rgba(92, 61, 23, .38), inset 16px 12px 24px rgba(255,255,255,.5), 0 0 22px rgba(214,184,102,.25), 0 24px 56px rgba(0,0,0,.42);
+  transform: rotateZ(-16deg) rotateX(8deg);
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+.glass-icon__body::after {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border-radius: 48%;
+  background: rgba(7, 6, 4, .72);
+  box-shadow: inset 0 0 0 1px rgba(255, 248, 231, .18), inset 0 0 24px rgba(214, 184, 102, .12);
+  backdrop-filter: blur(7px) saturate(140%);
+}
+
+.glass-icon__rim {
+  position: absolute;
+  inset: 7%;
+  z-index: 3;
+  border: 1px solid rgba(255, 255, 255, .74);
+  border-radius: 48%;
+  box-shadow: 0 0 14px rgba(255, 233, 167, .42), inset 0 0 10px rgba(255, 255, 255, .22);
+}
+
+.glass-icon__sheen { position: absolute; z-index: 4; display: block; border-radius: 999px; background: rgba(255,255,255,.74); filter: blur(2px); transform: rotate(-34deg); }
+.glass-icon__sheen--one { width: 13%; height: 58%; left: 20%; top: 12%; opacity: .52; }
+.glass-icon__sheen--two { width: 8%; height: 38%; right: 17%; bottom: 14%; opacity: .34; transform: rotate(32deg); }
+
+.glass-icon-stage__label {
+  position: absolute;
+  z-index: 3;
+  bottom: 7%;
+  margin: 0;
+  color: rgba(255, 248, 231, .78);
+  font: 700 .65rem/1 var(--font-body);
+  letter-spacing: .38em;
+  text-indent: .38em;
+}
+
+@keyframes glass-float { 0%, 100% { translate: 0 -8px; } 50% { translate: 0 12px; } }
+@keyframes glass-halo { 0%, 100% { opacity: .55; scale: .96; } 50% { opacity: .9; scale: 1.04; } }
+
 .brand-hero__fallback { position: absolute; z-index: 4; inset: 12% 8%; display: grid; place-items: center; gap: 1rem; padding: 1.25rem; background: rgba(6, 10, 20, .92); text-align: center; }
 .brand-hero__fallback img { width: min(56%, 390px); height: auto; filter: drop-shadow(0 0 18px rgba(214, 184, 102, .14)); }
 .brand-hero__fallback p { margin: 0; font-size: .9rem; color: rgba(220, 232, 255, .74); }
@@ -85,4 +189,8 @@
   .brand-hero__field { height: 54vh; min-height: 420px; margin: -.8rem -.65rem 0; }
   .brand-hero__field::before { inset: 4% 0 8%; background-size: 40px 40px; }
   .brand-hero__coordinate, .brand-hero__scroll { display: none; }
+  .glass-icon-stage { inset: 0; }
+  .glass-icon { width: min(68%, 330px); }
+  .glass-icon-stage__backdrop { font-size: clamp(2rem, 11vw, 4rem); }
+  .glass-icon-stage__label { bottom: 4%; font-size: .56rem; letter-spacing: .28em; }
 }
