@@ -35,7 +35,7 @@ export default function ChampagneHero() {
                 font: { fontFamily: "Arial, Helvetica, sans-serif", fontSize: 112, fontWeight: 800, letterSpacing: 2, lineHeight: 1 },
                 textColor: "#FFFFFF",
               }}
-              glass={{ tint: "#080808", chromatic: 26, frost: 16 }}
+              glass={{ tint: "#FFFFFF", chromatic: 52, frost: 3 }}
               orient={{ angleX: 0, angleY: 0, angleZ: 0, offsetX: 0, offsetY: 0 }}
             />
             <p className="glass-icon-stage__label">YUANYUANYI</p>
