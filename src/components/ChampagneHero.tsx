@@ -31,7 +31,7 @@ export default function ChampagneHero() {
               direction="Clockwise"
               backdrop={{
                 type: "Text",
-                text: "YUANYUANYI",
+                text: "YUAN\nYUAN\nYI",
                 font: { fontFamily: "Arial, Helvetica, sans-serif", fontSize: 112, fontWeight: 800, letterSpacing: 2, lineHeight: 1 },
                 textColor: "#FFFFFF",
               }}
