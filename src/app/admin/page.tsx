@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, BarChart3, FileText, Inbox } from "lucide-react";
+import { ArrowUpRight, BarChart3, Images, Inbox } from "lucide-react";
 
 export default function AdminPage() {
   return (
@@ -16,7 +16,10 @@ export default function AdminPage() {
           <div className="flex items-start justify-between"><span className="grid h-11 w-11 place-items-center bg-bg-alt text-cta"><BarChart3 size={20} /></span><ArrowUpRight size={18} className="text-muted transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-cta" /></div>
           <h2 className="mt-10 text-2xl">網站數據</h2><p className="mt-2 text-sm text-muted">瀏覽量、獨立訪客與熱門頁面追蹤。</p>
         </Link>
-        <div className="border border-dashed border-border p-6 text-muted sm:p-8"><FileText size={20} /><p className="mt-10 text-sm">後續可在這裡加入專案、內容或成效報表模組。</p></div>
+        <Link href="/admin/portfolio" className="group border border-border bg-white p-6 transition hover:border-cta sm:p-8">
+          <div className="flex items-start justify-between"><span className="grid h-11 w-11 place-items-center bg-bg-alt text-cta"><Images size={20} /></span><ArrowUpRight size={18} className="text-muted transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-cta" /></div>
+          <h2 className="mt-10 text-2xl">經典實績</h2><p className="mt-2 text-sm text-muted">上傳案例圖片、調整位置與圖片大小。</p>
+        </Link>
       </div>
     </div>
   );
