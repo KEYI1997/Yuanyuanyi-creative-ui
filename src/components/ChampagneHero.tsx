@@ -9,7 +9,7 @@ export default function ChampagneHero() {
       <div className="brand-hero__inner">
         <div className="brand-hero__copy">
           <p className="brand-hero__kicker"><span /> REAL ESTATE MARKETING</p>
-          <h1 id="hero-title">讓好建築<br />被市場看見</h1>
+          <h1 id="hero-title">讓好建築<br /><span className="brand-hero__nowrap">被市場看見</span></h1>
           <p className="brand-hero__lead">整合企劃、廣告、影音、網站與 LINE，讓建案定位更清楚，行銷更有效。</p>
           <p className="brand-hero__note">桃園｜建案整合行銷</p>
         </div>
