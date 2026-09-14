@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowUpRight, Building2, Globe, MessageCircle, Target, Video } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import ChampagneHero from "@/components/ChampagneHero";
@@ -11,13 +10,6 @@ const services = [
   { no: "03", icon: Video, title: "建案影音", desc: "形象影片、短影音、空拍與工程紀錄，用影像放大建案賣點。", href: "/solutions#short-video" },
   { no: "04", icon: Globe, title: "建案網站", desc: "手機優先、資訊清楚、轉換導向，讓瀏覽更接近一次有效詢問。", href: "/solutions#website" },
   { no: "05", icon: MessageCircle, title: "官方 LINE", desc: "整合選單、自動回覆、分眾推播與名單經營，把一次流量變成持續溝通。", href: "/solutions#line" },
-];
-
-const process = [
-  ["01", "市場分析", "看區域、競品、產品與目標客群。"],
-  ["02", "定位策略", "找出建案最值得被記住的核心賣點。"],
-  ["03", "整合執行", "統一企劃、視覺、廣告、影音、網站與 LINE。"],
-  ["04", "成效優化", "依詢問、名單與轉換數據持續調整。"],
 ];
 
 export default function Home() {
@@ -46,82 +38,6 @@ export default function Home() {
                 </Link>
               </AnimateOnScroll>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-border bg-bg-alt py-22 lg:py-32">
-        <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
-          <AnimateOnScroll>
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-              <div><p className="eyebrow">CREATIVE</p><h2 className="mt-6 text-4xl sm:text-5xl">讓建案的價值<br />一眼被看懂。</h2></div>
-              <p className="max-w-md text-sm leading-7 text-muted">建築、地段、產品與生活感，都應該服務同一個銷售主張。</p>
-            </div>
-          </AnimateOnScroll>
-          <div className="mt-12 grid gap-6 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
-            <AnimateOnScroll direction="left">
-              <figure className="group">
-                <div className="relative aspect-[4/5] overflow-hidden bg-dark"><Image src="/images/project-brick-house.png" alt="磚紅立面的台灣當代住宅建築" fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.025]" /></div>
-                <figcaption className="flex items-start justify-between border-t border-primary pt-4"><div><p className="text-xs font-bold tracking-[.14em] text-cta">VISUAL DIRECTION 01</p><h3 className="mt-2 text-2xl">城市裡的垂直庭院</h3></div><span className="text-xs text-muted">建築形象</span></figcaption>
-              </figure>
-            </AnimateOnScroll>
-            <AnimateOnScroll direction="right">
-              <figure className="group lg:mb-16">
-                <div className="relative aspect-[4/3] overflow-hidden bg-dark"><Image src="/images/project-interior.png" alt="自然光灑落的溫潤住宅室內空間" fill sizes="(min-width: 1024px) 60vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.025]" /></div>
-                <figcaption className="flex items-start justify-between border-t border-primary pt-4"><div><p className="text-xs font-bold tracking-[.14em] text-cta">VISUAL DIRECTION 02</p><h3 className="mt-2 text-2xl">把日常的光留在家裡</h3></div><span className="text-xs text-muted">生活情境</span></figcaption>
-              </figure>
-            </AnimateOnScroll>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-dark py-22 text-white lg:py-32">
-        <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
-          <div className="grid gap-12 lg:grid-cols-[.75fr_1.25fr]">
-            <AnimateOnScroll direction="left"><p className="eyebrow !text-warm">HOW WE WORK</p><h2 className="mt-7 text-4xl leading-tight sm:text-5xl lg:text-6xl">不先做廣告<br />先把市場看清楚。</h2><p className="mt-7 max-w-md leading-8 text-white/55">看區域、競品、產品與目標客群，再找出建案真正值得被記住的價值。</p></AnimateOnScroll>
-            <div>
-              {process.map(([no, title, desc], index) => (
-                <AnimateOnScroll key={no} delay={index * 80}>
-                  <div className="grid grid-cols-[42px_1fr] gap-4 border-t border-white/20 py-7 sm:grid-cols-[60px_180px_1fr]">
-                    <span className="text-xs font-bold text-warm">{no}</span><h3 className="text-xl font-medium text-white">{title}</h3><p className="col-start-2 text-sm leading-7 text-white/50 sm:col-start-auto">{desc}</p>
-                  </div>
-                </AnimateOnScroll>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white py-22 lg:py-32">
-        <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
-          <AnimateOnScroll>
-            <div className="grid gap-6 border-b border-primary pb-10 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
-              <div><p className="eyebrow">WHAT YOU GET</p><h2 className="mt-7 text-4xl leading-tight sm:text-5xl">行銷不只是做得漂亮<br />更要有效。</h2></div>
-            </div>
-          </AnimateOnScroll>
-
-          <div className="mt-12 grid gap-10 lg:grid-cols-[1.15fr_.85fr] lg:items-stretch">
-            <AnimateOnScroll direction="left">
-              <div className="relative min-h-[360px] overflow-hidden bg-bg-alt sm:min-h-[520px]">
-                <Image src="/images/studio-process.png" alt="團隊共同檢視建築圖面、材質與視覺提案" fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover" />
-                <div className="absolute bottom-0 left-0 bg-dark px-5 py-4 text-xs font-semibold tracking-[.14em] text-warm">STRATEGY / CREATIVE / PERFORMANCE</div>
-              </div>
-            </AnimateOnScroll>
-            <div className="flex flex-col justify-between">
-              {[
-                ["01", "定位更清楚", "讓市場快速理解建案的差異與價值。"],
-                ["02", "溝通更一致", "從廣告到接待中心，都說同一件事。"],
-                ["03", "成效可追蹤", "用數據判斷預算、素材與下一步。"],
-              ].map(([no, title, desc], index) => (
-                <AnimateOnScroll key={no} delay={index * 100}>
-                  <div className="border-t border-border py-7 lg:py-9">
-                    <div className="flex items-baseline gap-5"><span className="text-xs font-bold text-cta">{no}</span><h3 className="text-2xl font-medium">{title}</h3></div>
-                    <p className="mt-4 pl-10 text-sm leading-7 text-muted">{desc}</p>
-                  </div>
-                </AnimateOnScroll>
-              ))}
-              <div className="border-t border-primary pt-7"><Link href="/solutions" className="inline-flex items-center gap-3 text-sm font-semibold text-cta transition-colors hover:text-cta-hover">看看我們如何整合服務 <ArrowUpRight size={17} /></Link></div>
-            </div>
           </div>
         </div>
       </section>

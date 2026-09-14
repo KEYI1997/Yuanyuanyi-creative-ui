@@ -45,13 +45,6 @@
 .brand-hero h1 { margin: 0; font-family: var(--font-heading); font-size: clamp(3.3rem, 6.3vw, 7.4rem); font-weight: 500; line-height: .98; letter-spacing: 0; }
 .brand-hero__subheading { display: block; margin-top: .22em; font-size: .44em; line-height: 1.1; letter-spacing: .01em; }
 .brand-hero__lead { max-width: 34rem; margin: clamp(1.8rem, 4vh, 3.2rem) 0 0; color: rgba(239, 232, 210, .7); font-size: clamp(1rem, 1.2vw, 1.2rem); line-height: 1.9; }
-.brand-hero__actions { display: flex; align-items: center; gap: 1.6rem; margin-top: 2.2rem; }
-
-.brand-hero__primary, .brand-hero__link { display: inline-flex; min-height: 52px; align-items: center; justify-content: center; gap: .7rem; font-size: .9rem; font-weight: 700; }
-.brand-hero__primary { padding: .9rem 1.35rem; background: #f3f7ff; color: #05070d; transition: background .25s ease, transform .25s ease; }
-.brand-hero__primary:hover { background: #f1d98a; transform: translateY(-2px); }
-.brand-hero__link { border-bottom: 1px solid rgba(214, 184, 102, .38); }
-.brand-hero__link:hover { border-color: var(--gold); color: #f1d98a; }
 .brand-hero__note { margin-top: clamp(2.8rem, 6vh, 5rem); color: rgba(202, 181, 132, .58); font-size: .72rem; font-weight: 700; letter-spacing: .13em; }
 
 .brand-hero__field { position: relative; height: min(78vh, 860px); min-height: 560px; isolation: isolate; cursor: crosshair; }
@@ -195,9 +188,6 @@
   .brand-hero h1 { font-size: clamp(3.05rem, 15vw, 4.8rem); letter-spacing: 0; }
   .brand-hero__kicker { margin-bottom: 1.25rem; font-size: .62rem; }
   .brand-hero__lead { margin-top: 1.5rem; font-size: .98rem; line-height: 1.8; }
-  .brand-hero__actions { margin-top: 1.5rem; gap: 1rem; }
-  .brand-hero__primary { min-height: 48px; padding-inline: 1rem; }
-  .brand-hero__link { min-height: 48px; font-size: .84rem; }
   .brand-hero__field { height: 54vh; min-height: 420px; margin: -.8rem -.65rem 0; }
   .brand-hero__field::before { inset: 4% 0 8%; background-size: 40px 40px; }
   .brand-hero__coordinate, .brand-hero__scroll { display: none; }
