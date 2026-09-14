@@ -5,11 +5,11 @@ import AnimateOnScroll from "@/components/AnimateOnScroll";
 
 const serviceTypes = [
   "建案整體企劃",
-  "廣告投放",
-  "建案短影音",
-  "建案響應式網站",
-  "官方 LINE 經營",
-  "全案整合服務",
+  "數位廣告",
+  "建案影音",
+  "建案網站",
+  "官方 LINE",
+  "整合行銷",
   "其他",
 ];
 
@@ -63,13 +63,13 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimateOnScroll>
             <p className="text-cta font-medium text-sm uppercase tracking-widest mb-3">
-              Contact Us
+              CONTACT
             </p>
             <h1 className="text-4xl lg:text-5xl font-bold text-primary mb-6">
-              聯絡我們
+              有建案<br />就來聊聊。
             </h1>
             <p className="text-muted text-lg max-w-2xl mx-auto">
-              無論是建案企劃、廣告投放或任何行銷需求，歡迎與我們聯繫。
+              無論是新案前期定位、廣告投放，或整體行銷整合，都歡迎與我們聯繫。
             </p>
           </AnimateOnScroll>
         </div>
@@ -84,10 +84,10 @@ export default function ContactPage() {
               <div className="space-y-8">
                 <div>
                   <h2 className="text-2xl font-bold text-primary mb-4">
-                    聯繫方式
+                    有建案，就來聊聊。
                   </h2>
                   <p className="text-muted leading-relaxed">
-                    歡迎透過電話或表單與我們聯絡，我們將在 24 小時內回覆您的需求。
+                    無論是新案前期定位、廣告投放，或整體行銷整合，都歡迎與我們聯繫。
                   </p>
                 </div>
 
@@ -114,6 +114,14 @@ export default function ContactPage() {
                     <div>
                       <p className="font-medium text-primary">地區</p>
                       <p className="text-muted">桃園市</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 bg-cta/10 rounded-lg flex items-center justify-center shrink-0 text-cta">@</div>
+                    <div>
+                      <p className="font-medium text-primary">Email</p>
+                      <a href="mailto:y.yuanyi001@gmail.com" className="text-cta hover:text-cta-hover transition-colors">y.yuanyi001@gmail.com</a>
                     </div>
                   </div>
                 </div>

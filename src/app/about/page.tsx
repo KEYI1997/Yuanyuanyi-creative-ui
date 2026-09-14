@@ -1,205 +1,80 @@
 import Link from "next/link";
-import Image from "next/image";
-import {
-  ArrowRight,
-  Target,
-  Heart,
-  Lightbulb,
-  Award,
-  Users,
-  Building2,
-  TrendingUp,
-  Phone,
-} from "lucide-react";
+import { ArrowRight, BarChart3, Compass, Layers3, Search, Phone } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "關於我們",
-  description:
-    "認識圓圓乙創意留名 — 專注建案企劃的行銷團隊，以策略思維為建設公司打造最佳行銷方案。",
+  description: "圓圓乙創意留名專注建案行銷，整合企劃、廣告、影音、網站與 LINE。",
 };
 
 const values = [
-  {
-    icon: Target,
-    title: "精準策略",
-    desc: "每一個行銷動作都基於數據與市場分析，不做無效的投入。",
-  },
-  {
-    icon: Heart,
-    title: "用心服務",
-    desc: "把客戶的建案當成自己的作品，用心對待每一個細節。",
-  },
-  {
-    icon: Lightbulb,
-    title: "創意驅動",
-    desc: "在專業框架中注入創意元素，讓建案在市場中脫穎而出。",
-  },
-  {
-    icon: TrendingUp,
-    title: "結果導向",
-    desc: "一切以成果說話，持續追蹤優化直到達成目標。",
-  },
-];
-
-const milestones = [
-  { year: "成立", desc: "圓圓乙創意留名成立，專注建案企劃領域" },
-  { year: "深耕", desc: "持續深耕房地產行銷，累積豐富建案經驗" },
-  { year: "整合", desc: "建立完整服務鏈：企劃、投放、影音、網站、LINE" },
-  { year: "展望", desc: "持續擴大服務版圖，成為建案行銷的首選夥伴" },
+  { icon: Search, title: "看懂市場", desc: "策略從市場與產品開始。" },
+  { icon: Compass, title: "說清價值", desc: "把複雜條件整理成市場聽得懂的賣點。" },
+  { icon: Layers3, title: "整合執行", desc: "讓企劃、視覺與媒體保持一致。" },
+  { icon: BarChart3, title: "數據優化", desc: "用結果決定下一步。" },
 ];
 
 export default function AboutPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-bg-alt">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-bg-alt px-5 pb-20 pt-32 lg:px-12 lg:pb-28 lg:pt-44">
+        <div className="mx-auto max-w-[1440px]">
           <AnimateOnScroll>
-            <div className="max-w-3xl mx-auto text-center">
-              <p className="text-cta font-medium text-sm uppercase tracking-widest mb-3">
-                About Us
-              </p>
-              <h1 className="text-4xl lg:text-5xl font-bold text-primary mb-6">
-                關於圓圓乙創意留名
-              </h1>
-              <p className="text-muted text-lg leading-relaxed">
-                我們是一群熱愛房地產行銷的專業團隊，
-                致力於為建設公司提供最完整的行銷解決方案。
-              </p>
+            <p className="eyebrow">ABOUT US</p>
+            <h1 className="mt-8 max-w-4xl text-5xl leading-[1.12] sm:text-6xl lg:text-8xl">我們專注一件事：<br />把建案行銷做好。</h1>
+            <p className="mt-8 max-w-2xl text-lg leading-9 text-muted">市場不是缺廣告。<br />缺的是清楚的定位、一致的溝通，以及能持續優化的執行。</p>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
+      <section className="py-20 lg:py-32">
+        <div className="mx-auto grid max-w-[1440px] gap-14 px-5 sm:px-8 lg:grid-cols-[.7fr_1.3fr] lg:gap-24 lg:px-12">
+          <AnimateOnScroll direction="left">
+            <p className="eyebrow">ABOUT</p>
+            <h2 className="mt-7 text-4xl leading-tight sm:text-5xl">圓圓乙創意留名</h2>
+          </AnimateOnScroll>
+          <AnimateOnScroll direction="right">
+            <div className="max-w-3xl space-y-6 text-lg leading-9 text-muted">
+              <p>我們專做建案行銷。</p>
+              <p>從市場定位、企劃、廣告，到影音、網站與 LINE，協助建設公司把產品說清楚，把行銷做有效。</p>
+              <p>不為了好看而行銷。每一個策略、畫面與廣告，最後都要回到一件事：</p>
+              <p className="text-2xl font-semibold text-primary">讓市場理解，讓客戶行動。</p>
             </div>
           </AnimateOnScroll>
         </div>
       </section>
 
-      {/* 品牌故事 */}
-      <section className="py-20 lg:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <AnimateOnScroll direction="left">
-              <div>
-                <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-6">
-                  在平凡世界中
-                  <br />
-                  <span className="text-cta">無限思考</span>
-                </h2>
-                <div className="space-y-4 text-muted leading-relaxed">
-                  <p>
-                    我們相信每一個建案都有它獨特的故事，
-                    而我們的使命就是找到那個故事，並用最精準的方式傳達給對的人。
-                  </p>
-                  <p>
-                    從建案整體企劃到數位行銷執行，圓圓乙創意留名整合了策略規劃、廣告投放、
-                    影音製作、網站設計與 LINE 經營五大服務，
-                    為建設公司提供一站式的行銷解決方案。
-                  </p>
-                  <p>
-                    我們不做千篇一律的行銷，而是深入了解每個建案的特色、每塊土地的故事，
-                    量身打造最適合的行銷策略，讓每一個建案都被正確的人看見。
-                  </p>
-                </div>
-              </div>
-            </AnimateOnScroll>
-
-            <AnimateOnScroll direction="right">
-              <figure>
-                <div className="relative aspect-[3/2] overflow-hidden bg-dark">
-                  <Image src="/images/studio-process.png" alt="團隊在木桌上討論建築圖面與材質提案" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
-                </div>
-                <figcaption className="grid grid-cols-2 border-l border-t border-border">
-                  {[[Building2, "50+", "合作建案"], [Users, "30+", "合作夥伴"], [Award, "10 年+", "行銷經驗"], [TrendingUp, "95%", "客戶滿意度"]].map(([Icon, value, label]) => {
-                    const StatIcon = Icon as typeof Building2;
-                    return <div key={String(label)} className="border-b border-r border-border bg-white p-5"><StatIcon size={17} className="text-cta" /><p className="mt-4 font-heading text-3xl text-primary">{String(value)}</p><p className="mt-1 text-xs text-muted">{String(label)}</p></div>;
-                  })}
-                </figcaption>
-              </figure>
-            </AnimateOnScroll>
-          </div>
-        </div>
-      </section>
-
-      {/* 核心價值 */}
-      <section className="py-20 lg:py-28 bg-bg-alt">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-bg-alt py-20 lg:py-32">
+        <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
           <AnimateOnScroll>
-            <div className="text-center mb-14">
-              <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">
-                核心價值
-              </h2>
-              <p className="text-muted max-w-2xl mx-auto">
-                這些是我們團隊堅持的信念，也是每一次服務的基礎。
-              </p>
-            </div>
+            <p className="eyebrow">核心價值</p>
+            <h2 className="mt-7 text-4xl sm:text-5xl">讓每一個環節<br />都朝銷售目標前進。</h2>
           </AnimateOnScroll>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((val, i) => (
-              <AnimateOnScroll key={val.title} delay={i * 100}>
-                <div className="bg-white rounded-xl p-6 shadow-sm border border-border text-center hover:shadow-md transition-shadow">
-                  <div className="w-14 h-14 bg-cta/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <val.icon size={28} className="text-cta" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-primary mb-2">{val.title}</h3>
-                  <p className="text-muted text-sm leading-relaxed">{val.desc}</p>
-                </div>
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {values.map((value, index) => (
+              <AnimateOnScroll key={value.title} delay={index * 90}>
+                <article className="border border-border bg-white p-7">
+                  <value.icon size={24} className="text-cta" />
+                  <h3 className="mt-8 text-2xl">{value.title}</h3>
+                  <p className="mt-3 leading-7 text-muted">{value.desc}</p>
+                </article>
               </AnimateOnScroll>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 里程碑 */}
-      <section className="py-20 lg:py-28">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimateOnScroll>
-            <h2 className="text-3xl font-bold text-primary text-center mb-14">
-              發展歷程
-            </h2>
-          </AnimateOnScroll>
-
-          <div className="space-y-8">
-            {milestones.map((ms, i) => (
-              <AnimateOnScroll key={ms.year} delay={i * 100}>
-                <div className="flex items-start gap-6">
-                  <div className="w-20 shrink-0">
-                    <span className="text-cta font-bold text-lg">{ms.year}</span>
-                  </div>
-                  <div className="flex-1 bg-white rounded-xl p-6 shadow-sm border border-border">
-                    <p className="text-primary">{ms.desc}</p>
-                  </div>
-                </div>
-              </AnimateOnScroll>
-            ))}
+      <section className="bg-dark py-16 text-white lg:py-24">
+        <div className="mx-auto flex max-w-4xl flex-col items-start justify-between gap-8 px-5 sm:flex-row sm:items-center sm:px-8 lg:px-12">
+          <div>
+            <p className="eyebrow !text-warm">CONTACT</p>
+            <h2 className="mt-5 text-3xl sm:text-4xl">有建案，就來聊聊。</h2>
           </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-16 bg-dark">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <AnimateOnScroll>
-            <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4">
-              與我們一起走出不凡的路
-            </h2>
-            <p className="text-white/60 mb-8">
-              讓圓圓乙創意留名成為您下一個建案的行銷夥伴。
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 bg-cta text-white px-8 py-4 rounded-lg hover:bg-cta-hover transition-colors font-semibold"
-              >
-                聯絡我們 <ArrowRight size={18} />
-              </Link>
-              <a
-                href="tel:03-4229123"
-                className="inline-flex items-center gap-2 border-2 border-white/30 text-white px-8 py-4 rounded-lg hover:border-warm transition-colors font-semibold"
-              >
-                <Phone size={18} /> 03-4229123
-              </a>
-            </div>
-          </AnimateOnScroll>
+          <div className="flex flex-wrap gap-4">
+            <Link href="/contact" className="inline-flex items-center gap-2 bg-cta px-6 py-3 font-semibold text-dark hover:bg-cta-hover">洽談建案 <ArrowRight size={18} /></Link>
+            <a href="tel:03-4229123" className="inline-flex items-center gap-2 border border-white/30 px-6 py-3 font-semibold hover:border-white"><Phone size={17} />03-4229123</a>
+          </div>
         </div>
       </section>
     </>

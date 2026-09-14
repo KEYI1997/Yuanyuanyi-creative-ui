@@ -35,7 +35,7 @@ export default function Header() {
           </span>
           <span className="leading-none">
             <strong className="block font-heading text-base tracking-[.12em]">圓圓乙創意留名</strong>
-            <small className={`mt-1 block text-[9px] font-semibold tracking-[.2em] ${homeAtTop ? "text-white/55" : "text-muted"}`}>REAL ESTATE CREATIVE</small>
+            <small className={`mt-1 block text-[9px] font-semibold tracking-[.2em] ${homeAtTop ? "text-white/55" : "text-muted"}`}>REAL ESTATE MARKETING</small>
           </span>
         </Link>
 
@@ -46,7 +46,7 @@ export default function Header() {
             </Link>
           ))}
           <Link href="/#contact" className={`inline-flex items-center gap-2 border px-5 py-3 text-sm font-semibold transition-colors hover:border-cta hover:bg-cta hover:text-white ${homeAtTop ? "border-white/55 text-white" : "border-primary text-primary"}`}>
-            開始聊聊 <ArrowUpRight size={16} />
+            洽談建案 <ArrowUpRight size={16} />
           </Link>
         </nav>
 

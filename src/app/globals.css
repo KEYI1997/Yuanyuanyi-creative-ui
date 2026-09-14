@@ -15,8 +15,8 @@
   --color-dark: #020201;
   --color-muted: #B4A98C;
   --color-border: #3A2E1C;
-  --font-heading: "Noto Serif TC", "Songti TC", Georgia, serif;
-  --font-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --font-heading: "Source Han Serif TC", "Noto Serif TC", "思源宋體", "Songti TC", Georgia, serif;
+  --font-body: "Source Han Serif TC", "Noto Serif TC", "思源宋體", "Songti TC", Georgia, serif;
 }
 
 :root {

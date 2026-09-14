@@ -5,6 +5,7 @@ import { useState } from "react";
 import {
   ArrowRight,
   Search,
+  Target,
   Compass,
   PenTool,
   BarChart3,
@@ -27,61 +28,66 @@ import AnimateOnScroll from "@/components/AnimateOnScroll";
 
 const tabs = [
   { no: "01", label: "建案整體企劃" },
-  { no: "02", label: "廣告投放" },
-  { no: "03", label: "建案短影音" },
-  { no: "04", label: "響應式網站" },
+  { no: "02", label: "數位廣告" },
+  { no: "03", label: "建案影音" },
+  { no: "04", label: "建案網站" },
   { no: "05", label: "官方 LINE" },
 ];
 
 const tabContents = [
   {
     title: "建案整體企劃",
-    desc: "從零到一的全案企劃服務。我們不只是寫文案做設計，更從市場面出發，為建案找到最精準的定位與切入點。從市場調研、品牌定位、案名策略到銷售期全程規劃，打造建案獨特的市場識別度與銷售動能。",
+    headline: "",
+    desc: "從市場研究到銷售執行，建立建案清楚的市場定位。",
     features: [
-      { icon: Search, title: "市場調研分析", desc: "深入研究區域市場供需、競品分析、目標客群輪廓，建立精準的市場定位基礎。" },
-      { icon: Compass, title: "品牌定位策略", desc: "依據建案特色與目標客群，制定獨特的品牌定位、核心訴求與差異化策略。" },
-      { icon: PenTool, title: "案名與文案規劃", desc: "富有記憶點的案名命名、品牌故事、廣告文案與銷售說辭的系統化規劃。" },
-      { icon: BarChart3, title: "銷售輔助設計", desc: "DM、海報、接待中心視覺、模型說明、工地圍籬等全套銷售輔助物設計。" },
+      { icon: Search, title: "市場研究", desc: "分析區域、競品、產品與目標客群。" },
+      { icon: Compass, title: "品牌定位", desc: "找出核心賣點與市場差異。" },
+      { icon: PenTool, title: "案名與文案", desc: "建立案名、主訴求、品牌語言與銷售說法。" },
+      { icon: BarChart3, title: "銷售物設計", desc: "整合 DM、海報、圍籬、接待中心與銷售素材。" },
     ],
   },
   {
-    title: "廣告投放",
-    desc: "Meta、Google Ads、LINE LAP 多渠道精準投放，透過數據分析持續優化，讓每一分預算都花在刀口上。",
+    title: "數位廣告",
+    headline: "把預算\n花在有效來客上。",
+    desc: "整合 Meta、Google Ads 與 LINE LAP，持續測試受眾、素材與轉換成效。",
     features: [
-      { icon: TrendingUp, title: "數據驅動", desc: "即時監控，每日優化，確保預算效益最大化。" },
-      { icon: Eye, title: "精準受眾", desc: "多維度鎖定目標客群，找到真正可能走進接待中心的人。" },
-      { icon: MousePointerClick, title: "高轉換率", desc: "A/B 測試最大化點擊價值，持續提升轉換表現。" },
-      { icon: BarChart3, title: "透明報表", desc: "清楚掌握預算去向，每一筆花費都有據可查。" },
+      { icon: Target, title: "受眾策略", desc: "鎖定真正可能購屋的目標客群。" },
+      { icon: Eye, title: "素材測試", desc: "持續測試文案、視覺與廣告組合。" },
+      { icon: TrendingUp, title: "成效優化", desc: "依點擊、名單與轉換調整投放。" },
+      { icon: BarChart3, title: "數據報表", desc: "清楚掌握預算與廣告成效。" },
     ],
   },
   {
-    title: "建案短影音",
-    desc: "影音時代，讓建案動起來。專業攝影團隊搭配社群趨勢分析，製作高質感影片與短影音，抓住目標客群的注意力。",
+    title: "建案影音",
+    headline: "把建案賣點\n變成願意看完的內容。",
+    desc: "把建案賣點變成願意看完的內容。",
     features: [
-      { icon: Film, title: "建案形象影片", desc: "以電影級質感呈現建案空間美學、周邊環境與生活氛圍。" },
-      { icon: Camera, title: "社群短影音", desc: "針對 IG Reels、TikTok 趨勢製作高互動率的社群內容。" },
-      { icon: Plane, title: "空拍攝影", desc: "專業無人機空拍，俯瞰基地全貌，展現區域優勢。" },
-      { icon: Clapperboard, title: "工地紀錄片", desc: "記錄施工歷程，展現建設品質，增強購屋者信心。" },
+      { icon: Film, title: "建案形象影片", desc: "呈現建築、空間、環境與品牌形象。" },
+      { icon: Camera, title: "社群短影音", desc: "以短影音放大地段、產品與生活賣點。" },
+      { icon: Plane, title: "空拍影像", desc: "呈現基地位置、環境與區域條件。" },
+      { icon: Clapperboard, title: "工程紀錄", desc: "記錄施工與建築品質。" },
     ],
   },
   {
-    title: "建案響應式網站",
-    desc: "針對建案特性設計的高轉換率響應式網站。手機優先、快速載入，在一個頁面內完整呈現建案所有特色與聯絡管道。",
+    title: "建案網站",
+    headline: "讓流量進來\n也讓詢問留下來。",
+    desc: "依建案定位規劃網站內容與瀏覽動線，讓訪客快速理解產品並完成詢問。",
     features: [
-      { icon: Smartphone, title: "RWD 響應式設計", desc: "手機、平板、桌機完美適配，任何裝置都能流暢瀏覽。" },
-      { icon: Zap, title: "快速載入", desc: "3 秒內完成載入，降低跳出率，提升使用者體驗。" },
-      { icon: Search, title: "SEO 優化", desc: "搜尋引擎友善架構，在 Google 搜尋中脫穎而出。" },
-      { icon: MousePointerClick, title: "高轉換架構", desc: "引導訪客從瀏覽到諮詢，每一步都經過精心設計。" },
+      { icon: Smartphone, title: "RWD", desc: "支援手機、平板與桌機。" },
+      { icon: LayoutGrid, title: "資訊架構", desc: "快速找到房型、地段、產品與建案資訊。" },
+      { icon: Search, title: "SEO 基礎", desc: "建立搜尋引擎友善網站架構。" },
+      { icon: MousePointerClick, title: "轉換設計", desc: "清楚安排預約、電話與 LINE 行動入口。" },
     ],
   },
   {
     title: "官方 LINE",
-    desc: "LINE 是台灣最普及的通訊工具。透過官方帳號經營，建立與潛在購屋者的深度連結，從認識到成交持續經營。",
+    headline: "把廣告流量\n變成自己的名單。",
+    desc: "把廣告流量變成自己的名單。",
     features: [
-      { icon: LayoutGrid, title: "圖文選單設計", desc: "符合建案品牌調性，清晰引導用戶找到所需資訊。" },
-      { icon: Bot, title: "自動化回覆", desc: "關鍵字自動回覆、新好友歡迎訊息，24 小時不漏接。" },
-      { icon: Send, title: "定期推播管理", desc: "工程進度、優惠活動等重要訊息的策略性推播。" },
-      { icon: UserPlus, title: "好友招募策略", desc: "線上線下多渠道好友招募，持續擴大潛客名單。" },
+      { icon: LayoutGrid, title: "圖文選單", desc: "建立清楚的建案資訊入口。" },
+      { icon: Bot, title: "自動回覆", desc: "快速回應常見問題與基本需求。" },
+      { icon: Send, title: "分眾推播", desc: "依客群與需求傳遞適合的內容。" },
+      { icon: UserPlus, title: "好友經營", desc: "持續累積可再次溝通的潛在客戶。" },
     ],
   },
 ];
@@ -104,13 +110,13 @@ export default function SolutionsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimateOnScroll>
             <p className="text-warm font-medium text-sm uppercase tracking-widest mb-4">
-              Services
+              SERVICES
             </p>
             <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-              服務內容
+              建案整合行銷
             </h1>
             <p className="text-white/70 text-lg max-w-2xl mx-auto mb-12">
-              五大服務領域全面涵蓋建案行銷所需，從策略到執行一站整合。
+              從策略到執行，讓每一個行銷環節都朝同一個目標前進。
             </p>
           </AnimateOnScroll>
 
@@ -169,6 +175,7 @@ export default function SolutionsPage() {
                 <div key={index} className="w-full shrink-0">
                   <div className="mb-10">
                     <h2 className="text-2xl lg:text-3xl font-bold text-primary mb-4">{content.title}</h2>
+                    {content.headline && <p className="mb-5 whitespace-pre-line text-3xl leading-tight text-primary lg:text-4xl">{content.headline}</p>}
                     <p className="text-muted leading-relaxed max-w-3xl">{content.desc}</p>
                   </div>
 
@@ -195,10 +202,10 @@ export default function SolutionsPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimateOnScroll>
             <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4">
-              找到適合的服務了嗎？
+              有建案就來聊聊。
             </h2>
             <p className="text-white/70 mb-8">
-              讓我們一起討論您的建案行銷需求，量身打造最佳策略。
+              無論是新案前期定位、廣告投放，或整體行銷整合，都歡迎與我們聯繫。
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link

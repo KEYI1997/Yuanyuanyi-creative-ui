@@ -37,7 +37,7 @@ export async function POST(request: Request) {
         const resend = new Resend(process.env.RESEND_API_KEY);
 
         // 取得通知信箱
-        let notifyEmail = "default@example.com";
+        let notifyEmail = "y.yuanyi001@gmail.com";
         const { data: setting } = await supabase
           .from("site_content")
           .select("value")
