@@ -25,8 +25,8 @@ export default function PortfolioPage() {
           {projects.map((project, index) => (
             <AnimateOnScroll key={project.title} delay={index * 100}>
               <article className="group">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-bg-alt">
-                  <Image src={project.image} alt={project.alt} fill sizes="(min-width: 768px) 33vw, 100vw" className={`${project.className} rounded-2xl transition-transform duration-700 group-hover:scale-[1.035]`} />
+                <div className="portfolio-media relative aspect-[4/3] overflow-hidden bg-bg-alt">
+                  <Image src={project.image} alt={project.alt} fill sizes="(min-width: 768px) 33vw, 100vw" className={`${project.className} portfolio-media transition-transform duration-700 group-hover:scale-[1.035]`} />
                 </div>
                 <div className="mt-5 border-t border-white/20 pt-4">
                   <h2 className="text-2xl sm:text-3xl">{project.title}</h2>

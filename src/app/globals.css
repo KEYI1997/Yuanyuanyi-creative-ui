@@ -83,6 +83,7 @@ button, a { outline-offset: 4px; }
    structure while flattening the surface language makes the inner pages feel
    like the same editorial brand as the new homepage. */
 .rounded-lg, .rounded-xl, .rounded-2xl { border-radius: 2px; }
+.portfolio-media { border-radius: 28px; }
 .rounded-full { border-radius: 999px; }
 .shadow-sm, .shadow-md, .shadow-lg { box-shadow: none; }
 .bg-white { background-color: #12100B; }
