@@ -7,8 +7,7 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import Image from "next/image";
 
 const navLinks = [
-  { href: "/solutions", label: "服務內容" },
-  { href: "/#about", label: "關於我們" },
+  { href: "/portfolio", label: "經典實績" },
   { href: "/#contact", label: "聯絡洽詢" },
 ];
 
@@ -16,7 +15,7 @@ export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const darkHeroPages = ["/solutions"];
+  const darkHeroPages = ["/solutions", "/portfolio"];
   const homeAtTop = darkHeroPages.includes(pathname) && !scrolled && !open;
 
   useEffect(() => {
@@ -45,9 +44,6 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
-          <Link href="/#contact" className={`inline-flex items-center gap-2 border px-5 py-3 text-sm font-semibold transition-colors hover:border-cta hover:bg-cta hover:text-white ${homeAtTop ? "border-white/55 text-white" : "border-primary text-primary"}`}>
-            洽談建案 <ArrowUpRight size={16} />
-          </Link>
         </nav>
 
         <button type="button" onClick={() => setOpen(!open)} className={`ml-auto grid h-11 w-11 place-items-center lg:hidden ${homeAtTop ? "text-white" : "text-primary"}`} aria-label={open ? "關閉選單" : "開啟選單"} aria-expanded={open}>

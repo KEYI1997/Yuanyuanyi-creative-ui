@@ -18,8 +18,7 @@ export default function Footer() {
           <div>
             <p className="mb-5 text-xs font-bold tracking-[.16em] text-white/45">SITEMAP</p>
             <div className="space-y-3 text-sm text-white/70">
-              <Link className="block hover:text-white" href="/solutions">服務內容</Link>
-              <Link className="block hover:text-white" href="/about">關於我們</Link>
+              <Link className="block hover:text-white" href="/portfolio">經典實績</Link>
               <Link className="block hover:text-white" href="/contact">聯絡洽詢</Link>
             </div>
           </div>
