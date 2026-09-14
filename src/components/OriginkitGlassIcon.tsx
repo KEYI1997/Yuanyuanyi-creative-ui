@@ -549,7 +549,7 @@ function link(gl: WebGLRenderingContext, vs: string, fs: string) {
 }
 
 const DEFAULT_FONT: Required<FontValue> = {
-    fontFamily: "Inter, system-ui, -apple-system, sans-serif",
+    fontFamily: "Source Han Sans TC, Noto Sans TC, 思源黑體, Microsoft JhengHei, Arial, sans-serif",
     fontSize: 96,
     fontWeight: 700,
     fontStyle: "normal",
@@ -817,7 +817,7 @@ function __OriginkitBase_LiquidGlassCluster({
 
             const fontPx = numOf(f.fontSize, 96) * dprCur
             const weight = f.fontWeight ?? 700
-            const family = f.fontFamily || "Inter, system-ui, sans-serif"
+            const family = f.fontFamily || "Source Han Sans TC, Noto Sans TC, 思源黑體, Microsoft JhengHei, Arial, sans-serif"
             const fstyle = f.fontStyle || "normal"
             const lineH = numOf(f.lineHeight, 1.1) * fontPx
             const tracking = numOf(f.letterSpacing, 0) * dprCur

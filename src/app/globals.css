@@ -15,8 +15,8 @@
   --color-dark: #020201;
   --color-muted: #B4A98C;
   --color-border: #3A2E1C;
-  --font-heading: "Source Han Serif TC", "Noto Serif TC", "思源宋體", "Songti TC", Georgia, serif;
-  --font-body: "Source Han Serif TC", "Noto Serif TC", "思源宋體", "Songti TC", Georgia, serif;
+  --font-heading: "Source Han Sans TC", "Noto Sans TC", "思源黑體", "Microsoft JhengHei", Arial, sans-serif;
+  --font-body: "Source Han Sans TC", "Noto Sans TC", "思源黑體", "Microsoft JhengHei", Arial, sans-serif;
 }
 
 :root {

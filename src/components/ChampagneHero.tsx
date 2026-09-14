@@ -33,7 +33,7 @@ export default function ChampagneHero() {
               backdrop={{
                 type: "Text",
                 text: "YUAN\nYUAN\nYI",
-                font: { fontFamily: "Arial, Helvetica, sans-serif", fontSize: 112, fontWeight: 800, letterSpacing: 2, lineHeight: 1 },
+                font: { fontFamily: "Source Han Sans TC, Noto Sans TC, 思源黑體, Microsoft JhengHei, Arial, sans-serif", fontSize: 112, fontWeight: 800, letterSpacing: 2, lineHeight: 1 },
                 textColor: "#FFFFFF",
               }}
               glass={{ tint: "#FFFFFF", chromatic: 52, frost: 3 }}
