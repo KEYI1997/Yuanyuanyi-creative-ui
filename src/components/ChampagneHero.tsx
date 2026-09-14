@@ -27,7 +27,7 @@ export default function ChampagneHero() {
               shape="Torus"
               depth={56}
               size={94}
-              speed={30}
+              speed={45}
               direction="Clockwise"
               followPointer={false}
               backdrop={{
