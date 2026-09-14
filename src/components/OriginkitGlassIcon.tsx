@@ -56,6 +56,8 @@ export type LiquidGlassClusterProps = {
 
     speed?: number
     direction?: "Clockwise" | "Counterclockwise"
+    /** Keep the glass on its autonomous spin without pointer-driven tilt/drag rotation. */
+    followPointer?: boolean
     backdrop?: BackdropGroup
     glass?: GlassGroup
     orient?: OrientGroup
@@ -588,6 +590,7 @@ function __OriginkitBase_LiquidGlassCluster({
     size = 60,
     speed = 100,
     direction = "Clockwise",
+    followPointer = true,
     backdrop,
     glass,
     orient,
@@ -604,8 +607,8 @@ function __OriginkitBase_LiquidGlassCluster({
     const hostRef = useRef<HTMLDivElement>(null)
     const canvasRef = useRef<HTMLCanvasElement>(null)
 
-    const live = useRef({ background, shape, logo, depth, size, speed, direction, bd, gl3, or })
-    live.current = { background, shape, logo, depth, size, speed, direction, bd, gl3, or }
+    const live = useRef({ background, shape, logo, depth, size, speed, direction, followPointer, bd, gl3, or })
+    live.current = { background, shape, logo, depth, size, speed, direction, followPointer, bd, gl3, or }
 
     const rebuildSDF = useRef(true)
     const rebuildPlate = useRef(true)
@@ -935,6 +938,11 @@ function __OriginkitBase_LiquidGlassCluster({
         let lastY = 0
 
         function onPointerMove(e: PointerEvent) {
+            if (!live.current.followPointer) {
+                tiltTargetX = 0
+                tiltTargetY = 0
+                return
+            }
             if (dragging) {
                 baseYaw += (e.clientX - lastX) * DRAG_GAIN
                 basePitch += (e.clientY - lastY) * DRAG_GAIN
@@ -949,6 +957,7 @@ function __OriginkitBase_LiquidGlassCluster({
             tiltTargetY = (-((e.clientY - r.top) / Math.max(r.height, 1)) * 2 + 1) * TILT_RANGE
         }
         function onPointerDown(e: PointerEvent) {
+            if (!live.current.followPointer) return
             dragging = true
             lastX = e.clientX
             lastY = e.clientY
@@ -1001,16 +1010,16 @@ function __OriginkitBase_LiquidGlassCluster({
             if (isLogo && !sdfReady) return
 
             const k = 1 - Math.exp(-TILT_RATE * dt)
-            tiltX += (tiltTargetX - tiltX) * k
-            tiltY += (tiltTargetY - tiltY) * k
+            tiltX += ((p.followPointer ? tiltTargetX : 0) - tiltX) * k
+            tiltY += ((p.followPointer ? tiltTargetY : 0) - tiltY) * k
 
             const spin = (p.speed / 50) * (p.direction === "Counterclockwise" ? -1 : 1)
             baseYaw += spin * SPIN_YAW * dt
             basePitch += spin * SPIN_PITCH * dt
 
             const o = p.or
-            const yaw = baseYaw + tiltX + o.angleY * DEG
-            const pitch = Math.max(-1.45, Math.min(1.45, basePitch - tiltY)) + o.angleX * DEG
+            const yaw = baseYaw + (p.followPointer ? tiltX : 0) + o.angleY * DEG
+            const pitch = Math.max(-1.45, Math.min(1.45, basePitch - (p.followPointer ? tiltY : 0))) + o.angleX * DEG
             const rot = rotYXZ(yaw, pitch, o.angleZ * DEG)
             const rotT = transpose3(rot)
 
@@ -1174,4 +1183,3 @@ const __originkitPresetProps = {
 export default function LiquidGlassCluster(props: Record<string, unknown>) {
   return <__OriginkitBase_LiquidGlassCluster {...(__originkitPresetProps as Record<string, unknown>)} {...props} />;
 }
-

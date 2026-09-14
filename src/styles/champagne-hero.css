@@ -81,8 +81,7 @@
   z-index: 1;
 }
 
-.glass-icon-mcp canvas { cursor: grab; }
-.glass-icon-mcp canvas:active { cursor: grabbing; }
+.glass-icon-mcp canvas { cursor: default; }
 
 .glass-icon-stage__backdrop {
   position: absolute;
