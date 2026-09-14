@@ -1016,10 +1016,13 @@ function __OriginkitBase_LiquidGlassCluster({
             const spin = (p.speed / 50) * (p.direction === "Counterclockwise" ? -1 : 1)
             baseYaw += spin * SPIN_YAW * dt
             basePitch += spin * SPIN_PITCH * dt
+            // Keep both axes moving continuously; wrapping prevents unbounded angle growth.
+            baseYaw %= Math.PI * 2
+            basePitch %= Math.PI * 2
 
             const o = p.or
             const yaw = baseYaw + (p.followPointer ? tiltX : 0) + o.angleY * DEG
-            const pitch = Math.max(-1.45, Math.min(1.45, basePitch - (p.followPointer ? tiltY : 0))) + o.angleX * DEG
+            const pitch = basePitch - (p.followPointer ? tiltY : 0) + o.angleX * DEG
             const rot = rotYXZ(yaw, pitch, o.angleZ * DEG)
             const rotT = transpose3(rot)
 
