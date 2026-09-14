@@ -42,8 +42,8 @@
 .brand-hero__copy { position: relative; z-index: 3; max-width: 620px; }
 .brand-hero__kicker { display: flex; align-items: center; gap: .9rem; margin: 0 0 2rem; color: #e0c77a; font: 700 .7rem/1.2 var(--font-body); letter-spacing: .2em; text-transform: uppercase; }
 .brand-hero__kicker span { width: 2.8rem; height: 1px; background: var(--gold); }
-.brand-hero h1 { margin: 0; font-family: var(--font-heading); font-size: clamp(3.3rem, 6.3vw, 7.4rem); font-weight: 500; line-height: .98; letter-spacing: -.07em; }
-.brand-hero__subheading { display: block; margin-top: .22em; font-size: .44em; line-height: 1.1; letter-spacing: -.03em; }
+.brand-hero h1 { margin: 0; font-family: var(--font-heading); font-size: clamp(3.3rem, 6.3vw, 7.4rem); font-weight: 500; line-height: .98; letter-spacing: 0; }
+.brand-hero__subheading { display: block; margin-top: .22em; font-size: .44em; line-height: 1.1; letter-spacing: .01em; }
 .brand-hero__lead { max-width: 34rem; margin: clamp(1.8rem, 4vh, 3.2rem) 0 0; color: rgba(239, 232, 210, .7); font-size: clamp(1rem, 1.2vw, 1.2rem); line-height: 1.9; }
 .brand-hero__actions { display: flex; align-items: center; gap: 1.6rem; margin-top: 2.2rem; }
 
@@ -192,7 +192,7 @@
 @media (max-width: 620px) {
   .brand-hero__inner { padding: 6.8rem 1rem 6.4rem; gap: .6rem; }
   .brand-hero::before { display: none; }
-  .brand-hero h1 { font-size: clamp(3.05rem, 15vw, 4.8rem); letter-spacing: -.065em; }
+  .brand-hero h1 { font-size: clamp(3.05rem, 15vw, 4.8rem); letter-spacing: 0; }
   .brand-hero__kicker { margin-bottom: 1.25rem; font-size: .62rem; }
   .brand-hero__lead { margin-top: 1.5rem; font-size: .98rem; line-height: 1.8; }
   .brand-hero__actions { margin-top: 1.5rem; gap: 1rem; }
