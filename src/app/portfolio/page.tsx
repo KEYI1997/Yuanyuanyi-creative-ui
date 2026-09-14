@@ -1,23 +1,41 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "經典實績",
-  description: "圓圓乙創意留名的建案行銷實績，案例整理中。",
+  title: "歷屆實績",
+  description: "圓圓乙創意留名的建案行銷與主視覺實績。",
 };
+
+const projects = [
+  { title: "岩美芊映", image: "/images/portfolio/yanmei-qianying.png", alt: "岩美芊映主視覺：金色材質與綠色植物拼貼", label: "建案主視覺" },
+  { title: "樂MORE", image: "/images/portfolio/le-more.jpg", alt: "樂MORE主視覺：粉彩城市與生活想像", label: "建案主視覺" },
+  { title: "竑泰中壢山上段", image: "/images/portfolio/hongtai-zhongli.png", alt: "竑泰中壢山上段主視覺：家庭生活與綠意插畫", label: "建案主視覺" },
+];
 
 export default function PortfolioPage() {
   return (
-    <main className="min-h-[78vh] bg-dark px-5 pb-24 pt-36 text-white sm:px-8 lg:px-12 lg:pt-48">
+    <main className="min-h-screen bg-dark px-5 pb-24 pt-36 text-white sm:px-8 lg:px-12 lg:pb-32 lg:pt-48">
       <div className="mx-auto max-w-[1440px]">
         <AnimateOnScroll>
-          <p className="eyebrow !text-warm">經典實績</p>
-          <h1 className="mt-8 max-w-4xl text-5xl leading-[1.1] sm:text-7xl lg:text-8xl">把每一個建案<br />說到市場心裡。</h1>
-          <p className="mt-8 max-w-xl text-lg leading-9 text-white/60">經典建案案例整理中，敬請期待。</p>
-          <Link href="/#contact" className="mt-10 inline-flex items-center gap-3 border-b border-warm pb-2 text-warm transition-colors hover:border-white hover:text-white">洽談建案 <ArrowRight size={18} /></Link>
+          <h1 className="text-5xl leading-tight sm:text-6xl lg:text-8xl">歷屆實績</h1>
         </AnimateOnScroll>
+
+        <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-6 lg:mt-20 lg:gap-8">
+          {projects.map((project, index) => (
+            <AnimateOnScroll key={project.title} delay={index * 100}>
+              <article className="group">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-bg-alt">
+                  <Image src={project.image} alt={project.alt} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.035]" />
+                </div>
+                <div className="mt-5 border-t border-white/20 pt-4">
+                  <p className="text-xs font-bold tracking-[.16em] text-cta">{project.label}</p>
+                  <h2 className="mt-2 text-2xl sm:text-3xl">{project.title}</h2>
+                </div>
+              </article>
+            </AnimateOnScroll>
+          ))}
+        </div>
       </div>
     </main>
   );
