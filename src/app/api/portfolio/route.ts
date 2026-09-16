@@ -10,9 +10,9 @@ function authorized(request: Request) {
 }
 
 const fallback: PortfolioProject[] = [
-  { id: "yanmei-qianying", title: "岩美芊映", image: "/images/portfolio/yanmei-qianying.png", alt: "岩美芊映主視覺", positionX: 28, positionY: 50, scale: 1 },
+  { id: "yanmei-qianying", title: "岩美芊映", image: "/images/portfolio/yanmei-qianying.png", alt: "岩美芊映主視覺", positionX: 69.1396, positionY: 57.8362, scale: 1 },
   { id: "le-more", title: "樂MORE", image: "/images/portfolio/le-more.jpg", alt: "樂MORE主視覺", positionX: 50, positionY: 50, scale: 1 },
-  { id: "hongtai-zhongli", title: "竑泰中壢山上段", image: "/images/portfolio/hongtai-zhongli.png", alt: "竑泰中壢山上段主視覺", positionX: 50, positionY: 50, scale: 0.82 },
+  { id: "hongtai-zhongli", title: "竑泰中壢山上段", image: "/images/portfolio/hongtai-zhongli.png", alt: "竑泰中壢山上段主視覺", positionX: 61.4528, positionY: 58.2381, scale: 1.02306 },
 ];
 
 async function readProjects(supabase: ReturnType<typeof getServiceClient>) {
