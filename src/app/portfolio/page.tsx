@@ -1,5 +1,6 @@
 import Image from "next/image";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import { supabase } from "@/lib/supabase";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -26,7 +27,18 @@ const defaultProjects: PortfolioProject[] = [
 ];
 
 async function getProjects(): Promise<PortfolioProject[]> {
-  return defaultProjects;
+  try {
+    const { data } = await supabase
+      .from("site_content")
+      .select("value")
+      .eq("key", "portfolio_projects")
+      .maybeSingle();
+    if (!data?.value) return defaultProjects;
+    const parsed = JSON.parse(data.value) as PortfolioProject[];
+    return Array.isArray(parsed) && parsed.length ? parsed : defaultProjects;
+  } catch {
+    return defaultProjects;
+  }
 }
 
 export default async function PortfolioPage() {

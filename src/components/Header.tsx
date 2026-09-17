@@ -29,8 +29,8 @@ export default function Header() {
     <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled || open ? "bg-bg/95 border-b border-border backdrop-blur-lg" : "bg-transparent"}`}>
       <div className="mx-auto flex h-18 max-w-[1440px] items-center px-5 sm:px-8 lg:h-22 lg:px-12">
         <Link href="/" className={`group flex items-center gap-3 ${homeAtTop ? "text-white" : "text-primary"}`} aria-label="圓圓乙創意留名首頁">
-          <span className={`grid h-10 w-10 place-items-center border border-[#d6b866]/80 bg-transparent p-1.5 transition-transform duration-300 group-hover:rotate-6 ${homeAtTop ? "text-white" : "text-cta"}`}>
-            <Image src="/brand-logo.svg" alt="" width={30} height={30} className="h-full w-full object-contain" />
+          <span className={`grid h-14 w-14 place-items-center bg-transparent p-0 transition-transform duration-300 group-hover:rotate-6 ${homeAtTop ? "text-white" : "text-cta"}`}>
+            <Image src="/brand-logo.svg" alt="" width={56} height={56} className="h-full w-full object-contain" />
           </span>
           <span className="leading-none">
             <strong className="block font-heading text-base tracking-[.12em]">圓圓乙創意留名</strong>
