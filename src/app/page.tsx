@@ -53,10 +53,7 @@ export default function Home() {
               </div>
               <div className="max-w-2xl">
                 <p className="text-lg leading-9 text-muted">
-                  我們專做建案行銷。<br />從市場定位、企劃、廣告，到影音、網站與 LINE，協助建設公司把產品說清楚，把行銷做有效。
-                </p>
-                <p className="mt-5 leading-8 text-muted">
-                  不為了好看而行銷。每一個策略、畫面與廣告，最後都要回到一件事：<strong className="text-primary">讓市場理解，讓客戶行動。</strong>
+                  協助建設公司把產品說清楚，把行銷做有效。每一個策略、畫面與廣告，最後都要回到一件事：讓市場理解，讓客戶行動。
                 </p>
               </div>
             </div>
