@@ -39,25 +39,25 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   const links = [
     { href: "/admin", label: "總覽", icon: LayoutDashboard },
-    { href: "/admin/contacts", label: "聯絡表單", icon: FileText },
-    { href: "/admin/portfolio", label: "經典實績", icon: Images },
+    { href: "/admin/portfolio", label: "案例管理", icon: Images },
+    { href: "/admin/contacts", label: "表單查看", icon: FileText },
     { href: "/admin/analytics", label: "網站數據", icon: BarChart3 },
   ];
 
   return (
-    <div className="min-h-screen bg-bg text-primary md:grid md:grid-cols-[230px_1fr]">
-      <aside className="border-b border-border bg-dark px-5 py-5 text-white md:fixed md:inset-y-0 md:w-[230px] md:border-b-0 md:px-6 md:py-8">
+    <div className="min-h-screen bg-[#f3f4f6] text-[#0e2a4d] md:grid md:grid-cols-[278px_1fr]">
+      <aside className="border-b border-[#e1e5ea] bg-white px-5 py-5 text-[#0e2a4d] md:fixed md:inset-y-0 md:w-[278px] md:border-b-0 md:border-r md:px-5 md:py-7">
         <div className="flex items-center justify-between md:block">
-          <Link href="/admin" className="font-heading text-lg tracking-[.08em]">圓圓乙<span className="ml-2 font-body text-[9px] tracking-[.18em] text-warm">ADMIN</span></Link>
-          <Link href="/" className="text-white/45 hover:text-white md:hidden"><ArrowLeft size={18} /></Link>
+          <Link href="/admin" className="font-heading text-xl font-semibold tracking-[.04em]">圓圓乙後台</Link>
+          <Link href="/" className="text-[#52647b] hover:text-[#0e2a4d] md:hidden"><ArrowLeft size={18} /></Link>
         </div>
-        <nav className="mt-5 flex gap-2 md:mt-12 md:block md:space-y-2" aria-label="後台導覽">
-          {links.map((link) => { const active = pathname === link.href; return <Link key={link.href} href={link.href} className={`flex items-center gap-3 px-3 py-3 text-sm transition ${active ? "bg-white/10 text-white" : "text-white/50 hover:bg-white/5 hover:text-white"}`}><link.icon size={17} />{link.label}</Link>; })}
+        <nav className="mt-5 flex gap-2 overflow-x-auto md:mt-10 md:block md:space-y-1" aria-label="後台導覽">
+          {links.map((link) => { const active = pathname === link.href; return <Link key={link.href} href={link.href} className={`flex shrink-0 items-center gap-3 rounded-md px-4 py-3 text-sm transition ${active ? "bg-[#dbeafe] font-semibold text-[#155eef]" : "text-[#16324f] hover:bg-[#f3f6fa]"}`}><link.icon size={17} />{link.label}</Link>; })}
         </nav>
-        <Link href="/" className="absolute bottom-7 hidden items-center gap-2 text-xs text-white/40 hover:text-white md:flex"><ArrowLeft size={14} />回到前台網站</Link>
+        <Link href="/" className="absolute bottom-7 hidden items-center gap-2 text-xs text-[#728196] hover:text-[#0e2a4d] md:flex"><ArrowLeft size={14} />回到前台網站</Link>
       </aside>
       <main className="md:col-start-2">
-        <div className="border-b border-border bg-white/70 px-5 py-4 backdrop-blur sm:px-8"><p className="text-xs font-semibold tracking-[.12em] text-muted">CLIENT INQUIRY CONSOLE</p></div>
+        <div className="border-b border-[#e1e5ea] bg-white px-5 py-5 sm:px-8"><p className="text-sm font-semibold text-[#52647b]">網站總覽</p></div>
         <div className="mx-auto max-w-6xl px-5 py-8 sm:px-8 lg:py-12">{children}</div>
       </main>
     </div>
