@@ -45,7 +45,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   ];
 
   return (
-    <div className="min-h-screen bg-[#f3f4f6] text-[#0e2a4d] md:grid md:grid-cols-[278px_1fr]">
+    <div className="admin-shell min-h-screen bg-[#f3f4f6] text-[#0e2a4d] md:grid md:grid-cols-[278px_1fr]">
       <aside className="border-b border-[#e1e5ea] bg-white px-5 py-5 text-[#0e2a4d] md:fixed md:inset-y-0 md:w-[278px] md:border-b-0 md:border-r md:px-5 md:py-7">
         <div className="flex items-center justify-between md:block">
           <Link href="/admin" className="font-heading text-xl font-semibold tracking-[.04em]">圓圓乙後台</Link>

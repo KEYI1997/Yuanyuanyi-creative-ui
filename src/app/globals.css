@@ -91,6 +91,23 @@ input, textarea, select { font: inherit; }
 input::placeholder, textarea::placeholder { color: #657493; }
 input:focus, textarea:focus, select:focus { outline: none; }
 
+/* The admin console follows the light, blue dashboard language of the
+   reference control panel while the public site keeps its dark editorial theme. */
+.admin-shell { --admin-navy: #0e2a4d; --admin-muted: #52647b; --admin-line: #dbe1e8; --admin-blue: #155eef; }
+.admin-shell .bg-white { background-color: #fff; }
+.admin-shell .bg-dark { background-color: #344054; }
+.admin-shell .bg-bg { background-color: #fff; }
+.admin-shell .bg-bg-alt { background-color: #f7f9fc; }
+.admin-shell .text-primary { color: var(--admin-navy); }
+.admin-shell .text-primary-light { color: #344054; }
+.admin-shell .text-muted { color: var(--admin-muted); }
+.admin-shell .text-white { color: #fff; }
+.admin-shell .text-cta { color: var(--admin-blue); }
+.admin-shell .bg-cta { background-color: #1d63ed; }
+.admin-shell .bg-cta-hover:hover { background-color: #155eef; }
+.admin-shell .border-border { border-color: var(--admin-line); }
+.admin-shell .divide-border > :not([hidden]) ~ :not([hidden]) { border-color: var(--admin-line); }
+
 @keyframes revealUp {
   from { opacity: 0; transform: translateY(18px); }
   to { opacity: 1; transform: translateY(0); }

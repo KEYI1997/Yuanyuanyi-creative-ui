@@ -264,7 +264,7 @@ export default function AnalyticsPage() {
                   (chartData.length - 1) *
                     ((chartData.length * 50 - 60) / (chartData.length - 1 || 1))
                 } 220 Z`}
-                fill="rgba(22, 163, 74, 0.12)"
+                fill="rgba(59, 130, 246, 0.14)"
               />
               {/* 線 */}
               <polyline
@@ -280,7 +280,7 @@ export default function AnalyticsPage() {
                   )
                   .join(" ")}
                 fill="none"
-                stroke="#16a34a"
+                stroke="#3b82f6"
                 strokeWidth="2"
               />
               {/* X軸標籤 */}
