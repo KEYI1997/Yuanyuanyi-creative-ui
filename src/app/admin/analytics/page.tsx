@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { supabase } from "@/lib/supabase";
 
 interface PageView {
   id: string;
@@ -29,13 +28,9 @@ export default function AnalyticsPage() {
 
   const fetchData = useCallback(async () => {
     try {
-      const { data, error } = await supabase
-        .from("page_views")
-        .select("*")
-        .order("created_at", { ascending: false });
-      if (!error && data) {
-        setViews(data);
-      }
+      const response = await fetch("/api/analytics", { headers: { "x-admin-password": process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "" } });
+      const data = await response.json() as { views?: PageView[] };
+      if (response.ok && data.views) setViews(data.views);
     } catch (e) {
       console.error("Failed to fetch page views:", e);
     } finally {
@@ -61,8 +56,8 @@ export default function AnalyticsPage() {
   };
 
   const googleCount = getSourceCount("google");
-  const facebookCount = getSourceCount("facebook");
-  const lineCount = getSourceCount("line");
+  const yahooCount = getSourceCount("yahoo");
+  const youtubeCount = getSourceCount("youtube");
 
   // 最近 5 分鐘內的活躍訪客
   const now = new Date();
@@ -172,9 +167,9 @@ export default function AnalyticsPage() {
       {/* 統計卡片 */}
       <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard label="總瀏覽人次" value={totalViews} color="text-primary" />
+        <StatCard label="來自 Yahoo" value={yahooCount} color="text-violet-600" />
         <StatCard label="來自 Google" value={googleCount} color="text-blue-600" />
-        <StatCard label="來自 Facebook" value={facebookCount} color="text-indigo-600" />
-        <StatCard label="來自 LINE" value={lineCount} color="text-green-600" />
+        <StatCard label="來自 Youtube" value={youtubeCount} color="text-red-600" />
       </div>
 
       {/* 活躍使用者 + 圖表 */}
