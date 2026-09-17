@@ -9,10 +9,10 @@
   --color-accent-hover: #E6C96A;
   --color-warm: #D6B866;
   --color-warm-light: #F4E5B0;
-  --color-bg: #050403;
-  --color-bg-alt: #12100B;
+  --color-bg: #242424;
+  --color-bg-alt: #2d2d2d;
   --color-white: #FFF8E7;
-  --color-dark: #020201;
+  --color-dark: #242424;
   --color-muted: #B4A98C;
   --color-border: #3A2E1C;
   --font-heading: "Source Han Sans TC", "Noto Sans TC", "思源黑體", "Microsoft JhengHei", Arial, sans-serif;
@@ -20,7 +20,7 @@
 }
 
 :root {
-  --paper: #050403;
+  --paper: #242424;
   --ink: #FFF8E7;
   --brick: #D6B866;
   --line: #3A2E1C;
@@ -107,6 +107,8 @@ input:focus, textarea:focus, select:focus { outline: none; }
 .admin-shell .bg-cta-hover:hover { background-color: #155eef; }
 .admin-shell .border-border { border-color: var(--admin-line); }
 .admin-shell .divide-border > :not([hidden]) ~ :not([hidden]) { border-color: var(--admin-line); }
+.admin-login { color: #0e2a4d; }
+.admin-login .bg-white { background-color: #fff; }
 
 @keyframes revealUp {
   from { opacity: 0; transform: translateY(18px); }

@@ -13,25 +13,19 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   if (!authed) {
     return (
-      <div className="grid min-h-screen bg-dark lg:grid-cols-[1fr_1fr]">
-        <div className="paper-grid relative hidden overflow-hidden border-r border-white/10 p-12 text-white lg:flex lg:flex-col lg:justify-between">
-          <Link href="/" className="flex items-center gap-3 text-sm text-white/60 hover:text-white"><ArrowLeft size={16} />回到網站</Link>
-          <div><p className="eyebrow !text-warm">Studio console</p><h1 className="mt-7 max-w-xl text-6xl leading-[1.05]">把每一個詢問，<br />接成下一段合作。</h1></div>
-          <p className="text-xs tracking-[.12em] text-white/35">圓圓乙創意留名 · INTERNAL USE ONLY</p>
-        </div>
-        <div className="flex items-center justify-center bg-bg px-5 py-16">
-          <div className="w-full max-w-sm">
-            <div className="mb-10 flex h-12 w-12 items-center justify-center border border-primary"><LockKeyhole size={20} /></div>
-            <p className="mb-2 text-xs font-bold tracking-[.16em] text-cta">WELCOME BACK</p>
-            <h2 className="text-4xl">登入工作台</h2>
-            <p className="mt-3 text-sm text-muted">請輸入管理密碼以查看客戶詢問。</p>
-            <form className="mt-9" onSubmit={(e) => { e.preventDefault(); if (password === process.env.NEXT_PUBLIC_ADMIN_PASSWORD) { setAuthed(true); setError(""); } else setError("密碼不正確，請再試一次。"); }}>
-              <label htmlFor="admin-password" className="mb-2 block text-xs font-semibold tracking-wide text-primary">管理密碼</label>
-              <input id="admin-password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full border border-border bg-white px-4 py-3.5 outline-none transition focus:border-cta focus:ring-1 focus:ring-cta" placeholder="輸入密碼" autoComplete="current-password" />
-              <div aria-live="polite" className="min-h-8 pt-2 text-sm text-red-700">{error}</div>
-              <button type="submit" className="mt-2 w-full bg-cta py-3.5 text-sm font-semibold text-white transition hover:bg-cta-hover">進入工作台</button>
-            </form>
-          </div>
+      <div className="admin-login flex min-h-screen items-center justify-center bg-[#f3f4f6] px-5 py-12">
+        <div className="w-full max-w-md border border-[#e1e5ea] bg-white px-7 py-9 shadow-sm sm:px-10 sm:py-11">
+          <Link href="/" className="mb-10 inline-flex items-center gap-2 text-sm text-[#52647b] transition hover:text-[#0e2a4d]"><ArrowLeft size={16} />回到網站</Link>
+          <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-md bg-[#dbeafe] text-[#155eef]"><LockKeyhole size={20} /></div>
+          <p className="mb-2 text-xs font-bold tracking-[.16em] text-[#155eef]">WELCOME BACK</p>
+          <h1 className="text-4xl font-semibold text-[#0e2a4d]">登入工作台</h1>
+          <p className="mt-3 text-sm text-[#52647b]">請輸入管理密碼以查看客戶詢問。</p>
+          <form className="mt-9" onSubmit={(e) => { e.preventDefault(); if (password === process.env.NEXT_PUBLIC_ADMIN_PASSWORD) { setAuthed(true); setError(""); } else setError("密碼不正確，請再試一次。"); }}>
+            <label htmlFor="admin-password" className="mb-2 block text-xs font-semibold tracking-wide text-[#0e2a4d]">管理密碼</label>
+            <input id="admin-password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full border border-[#cfd7e3] bg-white px-4 py-3.5 text-[#0e2a4d] outline-none transition focus:border-[#155eef] focus:ring-1 focus:ring-[#155eef]/20" placeholder="輸入密碼" autoComplete="current-password" />
+            <div aria-live="polite" className="min-h-8 pt-2 text-sm text-red-700">{error}</div>
+            <button type="submit" className="mt-2 w-full rounded-md bg-[#1d63ed] py-3.5 text-sm font-semibold text-white transition hover:bg-[#155eef]">進入工作台</button>
+          </form>
         </div>
       </div>
     );

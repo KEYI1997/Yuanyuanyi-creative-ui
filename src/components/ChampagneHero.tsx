@@ -16,7 +16,7 @@ export default function ChampagneHero() {
           <div className="glass-icon-stage" role="img" aria-label="YUANYUANYI 玻璃環互動標誌，持續自主旋轉">
             <LiquidGlassCluster
               className="glass-icon-mcp"
-              background="#050403"
+              background="#242424"
               shape="Torus"
               depth={56}
               size={94}
