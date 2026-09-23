@@ -2,16 +2,24 @@ import { NextResponse } from "next/server";
 import { getServiceClient } from "@/lib/supabase";
 
 export async function POST(request: Request) {
+  const expectsJson = request.headers.get("content-type")?.includes("application/json") ?? false;
+  const reply = (payload: { error?: string; success?: boolean }, status = 200) => {
+    if (expectsJson) return NextResponse.json(payload, { status });
+    const destination = payload.success
+      ? "/contact?submitted=1"
+      : "/contact?submitError=1";
+    return NextResponse.redirect(new URL(destination, request.url), 303);
+  };
+
   try {
-    const body = await request.json();
+    const body = expectsJson
+      ? await request.json()
+      : Object.fromEntries(await request.formData());
     const { name, phone, email, company, service_type, description } = body;
 
     // 驗證必填欄位
     if (!name || !phone) {
-      return NextResponse.json(
-        { error: "姓名和電話為必填欄位" },
-        { status: 400 }
-      );
+      return reply({ error: "姓名和電話為必填欄位" }, 400);
     }
 
     // 寫入 Supabase
@@ -27,7 +35,7 @@ export async function POST(request: Request) {
 
     if (error) {
       console.error("Supabase insert error:", error);
-      return NextResponse.json({ error: "提交失敗" }, { status: 500 });
+      return reply({ error: "提交失敗" }, 500);
     }
 
     // 發送通知信（如果有設定 Resend API Key）
@@ -67,8 +75,9 @@ export async function POST(request: Request) {
       }
     }
 
-    return NextResponse.json({ success: true });
-  } catch {
-    return NextResponse.json({ error: "提交失敗" }, { status: 500 });
+    return reply({ success: true });
+  } catch (error) {
+    console.error("Contact submission error:", error);
+    return reply({ error: "提交失敗" }, 500);
   }
 }

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Phone, MapPin, Send, CheckCircle2, Loader2 } from "lucide-react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 
@@ -24,6 +24,16 @@ export default function ContactPage() {
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("submitted") === "1") {
+      setStatus("success");
+    } else if (params.get("submitError") === "1") {
+      setErrorMsg("表單送出失敗，請稍後重試，或直接寄信與我們聯絡。");
+      setStatus("error");
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
