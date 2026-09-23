@@ -24,10 +24,8 @@ export default function ChampagneHero() {
               direction="Clockwise"
               followPointer={false}
               backdrop={{
-                type: "Text",
-                text: "YUAN\nYUAN\nYI",
-                font: { fontFamily: "Source Han Sans TC, Noto Sans TC, 思源黑體, Microsoft JhengHei, Arial, sans-serif", fontSize: 112, fontWeight: 800, letterSpacing: 2, lineHeight: 1 },
-                textColor: "#FFFFFF",
+                type: "Image",
+                image: "/yuanyuanyi-wordmark.svg",
               }}
               glass={{ tint: "#FFFFFF", chromatic: 52, frost: 3 }}
               orient={{ angleX: 0, angleY: 0, angleZ: 0, offsetX: 0, offsetY: 0 }}
