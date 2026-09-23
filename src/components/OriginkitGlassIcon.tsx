@@ -838,7 +838,7 @@ function __OriginkitBase_LiquidGlassCluster({
             if (p.bd.layout === "yuanyuanyi") {
                 // Recreate the supplied wordmark layout with live canvas text:
                 // two centered italic YUAN rows, a lower-right YI, and underline.
-                const wordmarkFontPx = Math.max(28 * dprCur, Math.min(w, h) * 0.33)
+                const wordmarkFontPx = Math.max(28 * dprCur, Math.min(w, h) * 0.26)
                 ctx2d.font = `${fstyle} ${weight} ${wordmarkFontPx}px ${family}`
                 ctx2d.textAlign = "center"
                 ctx2d.textBaseline = "middle"
@@ -852,17 +852,17 @@ function __OriginkitBase_LiquidGlassCluster({
                     ctx2d.restore()
                 }
 
-                drawScaled(lines[0] ?? "YUAN", w * 0.5, h * 0.27, 1.28)
-                drawScaled(lines[1] ?? "YUAN", w * 0.5, h * 0.51, 1.28)
-                drawScaled(lines[2] ?? "YI", w * 0.79, h * 0.72, 1.12)
+                drawScaled(lines[0] ?? "YUAN", w * 0.5, h * 0.27, 1.1)
+                drawScaled(lines[1] ?? "YUAN", w * 0.5, h * 0.55, 1.1)
+                drawScaled(lines[2] ?? "YI", w * 0.78, h * 0.81, 1.02)
 
                 ctx2d.save()
                 ctx2d.strokeStyle = p.bd.textColor || "#FFFFFF"
                 ctx2d.lineWidth = Math.max(3 * dprCur, wordmarkFontPx * 0.035)
                 ctx2d.lineCap = "butt"
                 ctx2d.beginPath()
-                ctx2d.moveTo(w * 0.05, h * 0.83)
-                ctx2d.lineTo(w * 0.65, h * 0.83)
+                ctx2d.moveTo(w * 0.05, h * 0.92)
+                ctx2d.lineTo(w * 0.65, h * 0.92)
                 ctx2d.stroke()
                 ctx2d.restore()
             } else {
