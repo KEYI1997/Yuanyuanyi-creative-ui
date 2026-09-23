@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" role="img" aria-label="YUAN YUAN YI">
+  <rect width="500" height="500" fill="#242424"/>
   <g fill="#FFFFFF">
     <g>
       <path d="M168.5 84.8l-45.7 67-6.5 37H92.8l6.4-36.6L78.2 84.8h26.8l9.9 38.8c.2.7.5 3.6.9 8.5h.3c1.2-3.5 2.5-6.2 3.7-8.2l23.9-39.1h25.7z"/>
