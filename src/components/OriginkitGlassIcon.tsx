@@ -20,6 +20,8 @@ export type BackdropGroup = {
     video?: string
 
     text?: string
+    /** Optional custom placement for the three-line YUAN/YUAN/YI wordmark. */
+    layout?: "center" | "yuanyuanyi"
     font?: FontValue
     textColor?: string
 }
@@ -562,6 +564,7 @@ const DEFAULT_BACKDROP: Required<BackdropGroup> = {
     image: DUMMY_BACKDROP,
     video: "",
     text: "LIQUID\nGLASS",
+    layout: "center",
     font: DEFAULT_FONT,
     textColor: "#FFFFFF",
 }
@@ -627,6 +630,7 @@ function __OriginkitBase_LiquidGlassCluster({
         bd.font.fontStyle,
         bd.font.letterSpacing,
         bd.font.lineHeight,
+        bd.layout,
     ].join("|")
 
     useEffect(() => {
@@ -826,18 +830,50 @@ function __OriginkitBase_LiquidGlassCluster({
 
             ctx2d.fillStyle = p.background
             ctx2d.fillRect(0, 0, w, h)
-            ctx2d.font = `${fstyle} ${weight} ${fontPx}px ${family}`
-            ctx2d.textAlign = "center"
-            ctx2d.textBaseline = "middle"
             ctx2d.fillStyle = p.bd.textColor || "#FFFFFF"
 
             const anyCtx = ctx2d as CanvasRenderingContext2D & { letterSpacing?: string }
-            if ("letterSpacing" in anyCtx) anyCtx.letterSpacing = `${tracking}px`
-
             const lines = String(p.bd.text ?? "").split("\n")
-            const top = h / 2 - ((lines.length - 1) * lineH) / 2
-            for (let i = 0; i < lines.length; i++) {
-                ctx2d.fillText(lines[i], w / 2, top + i * lineH)
+
+            if (p.bd.layout === "yuanyuanyi") {
+                // Recreate the supplied wordmark layout with live canvas text:
+                // two centered italic YUAN rows, a lower-right YI, and underline.
+                const wordmarkFontPx = Math.max(28 * dprCur, Math.min(w, h) * 0.33)
+                ctx2d.font = `${fstyle} ${weight} ${wordmarkFontPx}px ${family}`
+                ctx2d.textAlign = "center"
+                ctx2d.textBaseline = "middle"
+                if ("letterSpacing" in anyCtx) anyCtx.letterSpacing = `${tracking}px`
+
+                const drawScaled = (value: string, x: number, y: number, scaleX: number) => {
+                    ctx2d.save()
+                    ctx2d.translate(x, y)
+                    ctx2d.scale(scaleX, 1)
+                    ctx2d.fillText(value, 0, 0)
+                    ctx2d.restore()
+                }
+
+                drawScaled(lines[0] ?? "YUAN", w * 0.5, h * 0.27, 1.28)
+                drawScaled(lines[1] ?? "YUAN", w * 0.5, h * 0.51, 1.28)
+                drawScaled(lines[2] ?? "YI", w * 0.79, h * 0.72, 1.12)
+
+                ctx2d.save()
+                ctx2d.strokeStyle = p.bd.textColor || "#FFFFFF"
+                ctx2d.lineWidth = Math.max(3 * dprCur, wordmarkFontPx * 0.035)
+                ctx2d.lineCap = "butt"
+                ctx2d.beginPath()
+                ctx2d.moveTo(w * 0.05, h * 0.83)
+                ctx2d.lineTo(w * 0.65, h * 0.83)
+                ctx2d.stroke()
+                ctx2d.restore()
+            } else {
+                ctx2d.font = `${fstyle} ${weight} ${fontPx}px ${family}`
+                ctx2d.textAlign = "center"
+                ctx2d.textBaseline = "middle"
+                if ("letterSpacing" in anyCtx) anyCtx.letterSpacing = `${tracking}px`
+                const top = h / 2 - ((lines.length - 1) * lineH) / 2
+                for (let i = 0; i < lines.length; i++) {
+                    ctx2d.fillText(lines[i], w / 2, top + i * lineH)
+                }
             }
 
             plateAspect = w / h
