@@ -872,10 +872,21 @@ function __OriginkitBase_LiquidGlassCluster({
                 img.crossOrigin = "anonymous"
                 img.onload = () => {
                     if (token !== plateToken) return
-                    plateAspect = img.width / Math.max(img.height, 1)
+                    // Rasterize image sources first so SVG wordmarks upload
+                    // consistently across WebGL implementations.
+                    const iw = Math.max(2, img.naturalWidth || img.width || 500)
+                    const ih = Math.max(2, img.naturalHeight || img.height || 500)
+                    const c = document.createElement("canvas")
+                    c.width = iw
+                    c.height = ih
+                    const c2d = c.getContext("2d")
+                    if (!c2d) return
+                    c2d.clearRect(0, 0, iw, ih)
+                    c2d.drawImage(img, 0, 0, iw, ih)
+                    plateAspect = iw / ih
                     gl.bindTexture(gl.TEXTURE_2D, plateTex)
                     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1)
-                    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img)
+                    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, c)
                     plateReady = true
                 }
                 img.src = url
